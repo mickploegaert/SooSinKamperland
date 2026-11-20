@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-poppins), "Poppins", sans-serif;
+  --color-soos-dark: #260b45;
+  --color-soos-purple: #5315a5;
+  --color-soos-ink: #292633;
+}
+
+body {
+  background: #ffffff;
+  color: #292633;
+}
+
+:focus-visible {
+  outline: 2px solid #5315a5;
+  outline-offset: 2px;
+}
+
+header :focus-visible,
+footer :focus-visible {
+  outline-color: #ffffff;
+}
