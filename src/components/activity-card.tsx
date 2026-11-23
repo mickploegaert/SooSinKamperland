@@ -1,3 +1,4 @@
+import { CalendarDays } from "lucide-react";
 import Image from "next/image";
 import {
   formatActivityDate,
@@ -27,7 +28,7 @@ export function ActivityCard({
 }) {
   return (
     <article
-      className={`group overflow-hidden rounded-2xl bg-white ring-1 ring-soos-dark/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-24px_rgba(83,21,165,0.45)] hover:ring-soos-purple/40 ${
+      className={`soos-card group overflow-hidden ${
         featured ? "grid lg:grid-cols-2" : "flex h-full flex-col"
       }`}
     >
@@ -47,13 +48,14 @@ export function ActivityCard({
           <DateBadge date={activity.date} />
         </div>
         {featured ? (
-          <span className="absolute bottom-4 left-4 rounded-full bg-soos-purple px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+          <span className="absolute bottom-4 left-4 rounded-full bg-soos-accent px-3 py-1 text-xs font-bold uppercase tracking-wider text-soos-dark shadow">
             Eerstvolgende
           </span>
         ) : null}
       </div>
       <div className={`flex flex-col justify-center ${featured ? "p-6 sm:p-10" : "flex-1 p-5"}`}>
-        <p className="text-sm font-semibold capitalize text-soos-purple">
+        <p className="flex items-center gap-2 text-sm font-semibold capitalize text-soos-purple">
+          <CalendarDays aria-hidden className="size-4 shrink-0" />
           <time dateTime={activity.date}>
             {formatWeekday(activity.date)} {formatActivityDate(activity.date)}
           </time>

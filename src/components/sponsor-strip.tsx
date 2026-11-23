@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { TextLink } from "@/components/button";
+import { SectionHeading } from "@/components/section-heading";
 import { sponsors } from "@/lib/sponsors";
 
 function Logos({ hidden = false }: { hidden?: boolean }) {
@@ -30,25 +31,12 @@ export function SponsorStrip() {
   return (
     <section aria-labelledby="sponsor-strip-titel" className="px-4 pb-4">
       <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2
-              id="sponsor-strip-titel"
-              className="text-3xl font-bold tracking-tight text-soos-dark sm:text-4xl"
-            >
-              Mogelijk gemaakt door
-            </h2>
-            <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-soos-purple">
-              Onze sponsoren
-            </p>
-          </div>
-          <Link
-            href="/sponsoren"
-            className="text-sm font-semibold text-soos-dark underline decoration-soos-purple/40 underline-offset-4 hover:decoration-soos-purple"
-          >
-            Alle sponsoren <span aria-hidden>→</span>
-          </Link>
-        </div>
+        <SectionHeading
+          id="sponsor-strip-titel"
+          eyebrow="Onze sponsoren"
+          title="Mogelijk gemaakt door"
+          action={<TextLink href="/sponsoren">Alle sponsoren</TextLink>}
+        />
       </div>
       <div className="mt-8 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] motion-reduce:[mask-image:none]">
         <div className="flex w-max motion-reduce:w-full motion-reduce:flex-wrap">

@@ -1,50 +1,65 @@
 "use client";
 
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ButtonLink } from "@/components/button";
 import { isCurrentPage, mainNavigation } from "@/lib/navigation";
 
 export function MainNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <>
-      <nav aria-label="Hoofdmenu" className="hidden items-center gap-1 lg:flex">
-        {mainNavigation.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            aria-current={isCurrentPage(pathname, item.href) ? "page" : undefined}
-            className="rounded-full px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10 hover:text-white aria-[current=page]:bg-white/15 aria-[current=page]:text-white"
-          >
-            {item.label}
-          </Link>
-        ))}
-        <Link
-          href="/sponsoren#vrienden"
-          className="ml-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-soos-dark shadow transition hover:bg-soos-mist"
-        >
+      <div className="hidden items-center gap-2 lg:flex">
+        <nav aria-label="Hoofdmenu" className="flex items-center gap-1">
+          {mainNavigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isCurrentPage(pathname, item.href) ? "page" : undefined}
+              className="group relative rounded-full px-3 py-2 text-sm font-semibold text-white/80 transition hover:text-white aria-[current=page]:text-white"
+            >
+              {item.label}
+              <span
+                aria-hidden
+                className="absolute inset-x-3 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-soos-accent transition-transform duration-300 group-hover:scale-x-100 group-aria-[current=page]:scale-x-100 motion-reduce:transition-none"
+              />
+            </Link>
+          ))}
+        </nav>
+        <ButtonLink href="/sponsoren#vrienden" variant="light" size="sm" className="ml-2">
           Word sponsor
-        </Link>
-      </nav>
+        </ButtonLink>
+      </div>
 
       <div className="lg:hidden">
         <button
           type="button"
-          className="rounded-full border border-white/30 px-3 py-2 text-sm font-semibold"
+          className="flex size-11 items-center justify-center rounded-full ring-1 ring-inset ring-white/30 transition hover:bg-white/10"
           aria-expanded={open}
           aria-controls="mobiel-menu"
           onClick={() => setOpen((value) => !value)}
         >
-          {open ? "Sluiten" : "Menu"}
+          {open ? <X aria-hidden className="size-5" /> : <Menu aria-hidden className="size-5" />}
+          <span className="sr-only">{open ? "Menu sluiten" : "Menu openen"}</span>
         </button>
         {open ? (
           <nav
             id="mobiel-menu"
             aria-label="Mobiel menu"
-            className="absolute inset-x-0 top-full border-t border-white/10 bg-soos-dark px-4 py-4"
+            className="absolute inset-x-0 top-full border-t border-white/10 bg-soos-dark px-4 pb-6 pt-4 shadow-[0_24px_32px_-16px_rgba(0,0,0,0.6)] motion-safe:animate-[menu-in_200ms_ease-out]"
           >
             <ul className="mx-auto flex max-w-6xl flex-col gap-1">
               {mainNavigation.map((item) => (
@@ -52,21 +67,22 @@ export function MainNav() {
                   <Link
                     href={item.href}
                     aria-current={isCurrentPage(pathname, item.href) ? "page" : undefined}
-                    className="block rounded-lg px-3 py-3 text-base font-semibold hover:bg-white/10 aria-[current=page]:bg-white/15"
+                    className="block rounded-xl px-4 py-3 text-base font-semibold text-white/85 transition hover:bg-white/10 aria-[current=page]:bg-white/10 aria-[current=page]:text-white aria-[current=page]:shadow-[inset_3px_0_0_var(--color-soos-accent)]"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
-                <Link
+              <li className="pt-3">
+                <ButtonLink
                   href="/sponsoren#vrienden"
-                  className="block rounded-full bg-white px-4 py-3 text-center text-base font-semibold text-soos-dark"
+                  variant="light"
+                  className="w-full"
                   onClick={() => setOpen(false)}
                 >
                   Word sponsor
-                </Link>
+                </ButtonLink>
               </li>
             </ul>
           </nav>

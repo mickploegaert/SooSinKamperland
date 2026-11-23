@@ -25,11 +25,17 @@ export function SocialIcons() {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 transition hover:-translate-y-0.5 hover:bg-white hover:text-soos-purple"
+            className="group relative flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 transition hover:-translate-y-0.5 hover:bg-white hover:text-soos-purple"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="size-5">
               {icons[link.name]}
             </svg>
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-soos-dark opacity-0 shadow-lg transition group-hover:opacity-100 group-focus-visible:opacity-100"
+            >
+              {link.name}
+            </span>
             <span className="sr-only">
               {link.name} van Soos in Kamperland (opent in een nieuw tabblad)
             </span>

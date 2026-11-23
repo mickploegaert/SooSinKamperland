@@ -1,3 +1,4 @@
+import { Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SocialIcons } from "@/components/social-icons";
@@ -47,12 +48,16 @@ export function SiteFooter() {
             Contact
           </h2>
           <address className="mt-4 space-y-2 text-sm not-italic text-white/90">
-            <p>
-              {contactInfo.street}
-              <br />
-              {contactInfo.postalCode} {contactInfo.city}
+            <p className="flex gap-3">
+              <MapPin aria-hidden className="mt-0.5 size-4 shrink-0 text-soos-accent" />
+              <span>
+                {contactInfo.street}
+                <br />
+                {contactInfo.postalCode} {contactInfo.city}
+              </span>
             </p>
-            <p>
+            <p className="flex gap-3">
+              <Mail aria-hidden className="mt-0.5 size-4 shrink-0 text-soos-accent" />
               <a href={`mailto:${contactInfo.email}`} className="hover:underline">
                 {contactInfo.email}
               </a>

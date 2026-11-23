@@ -6,11 +6,66 @@
   --color-soos-purple: #5315a5;
   --color-soos-ink: #292633;
   --color-soos-mist: #f4f0fa;
+  --color-soos-accent: #ffb703;
 }
 
 @keyframes sponsor-scroll {
   to {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gedeeld oppervlak voor alle kaarten: zelfde rand, schaduw en hover. */
+@utility soos-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0 0 1px rgb(38 11 69 / 0.1);
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 0 0 1px rgb(83 21 165 / 0.4),
+      0 24px 40px -24px rgb(83 21 165 / 0.45);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+/* Zachte fade-in voor de inhoud van elke pagina. */
+@utility page-enter {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fade-up 450ms ease-out both;
   }
 }
 
@@ -27,6 +82,17 @@ html {
 body {
   background: #ffffff;
   color: #292633;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 :focus-visible {

@@ -1,3 +1,4 @@
+import { Mail, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { PageCard, PageHero } from "@/components/page-hero";
@@ -25,10 +26,7 @@ export default function ContactPage() {
                 <div className="flex gap-4">
                   <dt className="flex size-11 shrink-0 items-center justify-center rounded-full bg-soos-mist text-soos-purple">
                     <span className="sr-only">E-mail</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className="size-5">
-                      <rect x="3" y="5" width="18" height="14" rx="2.5" />
-                      <path d="m4 7 8 6 8-6" />
-                    </svg>
+                    <Mail aria-hidden className="size-5" />
                   </dt>
                   <dd>
                     <a
@@ -42,10 +40,7 @@ export default function ContactPage() {
                 <div className="flex gap-4">
                   <dt className="flex size-11 shrink-0 items-center justify-center rounded-full bg-soos-mist text-soos-purple">
                     <span className="sr-only">Adres</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className="size-5">
-                      <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z" />
-                      <circle cx="12" cy="10" r="2.3" />
-                    </svg>
+                    <MapPin aria-hidden className="size-5" />
                   </dt>
                   <dd>
                     <p className="font-semibold text-soos-dark">{contactInfo.street}</p>

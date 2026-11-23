@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { connection } from "next/server";
 import { ActivityCard } from "@/components/activity-card";
+import { ButtonLink, TextLink } from "@/components/button";
+import { SectionHeading } from "@/components/section-heading";
 import { SponsorStrip } from "@/components/sponsor-strip";
 import { upcomingActivities } from "@/lib/activities";
 
@@ -39,12 +40,11 @@ export default async function Home() {
               Dé plek voor jong en oud in Kamperland. Bekijk onze activiteiten
               en meer!
             </p>
-            <Link
-              href="/activiteiten"
-              className="mt-8 inline-flex rounded-full bg-soos-purple px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-[#3f1080]"
-            >
-              Bekijk activiteiten
-            </Link>
+            <div className="mt-8">
+              <ButtonLink href="/activiteiten" arrow>
+                Bekijk activiteiten
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </section>
@@ -59,13 +59,9 @@ export default async function Home() {
               <p className="mt-4 text-sm font-semibold uppercase tracking-[0.18em] text-soos-purple">
                 De leukste activiteiten vind je hier
               </p>
-              <Link
-                href="/activiteiten"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-soos-dark underline decoration-soos-purple/40 underline-offset-4 transition hover:decoration-soos-purple"
-              >
-                Lees meer
-                <span aria-hidden>→</span>
-              </Link>
+              <div className="mt-6">
+                <TextLink href="/activiteiten">Lees meer</TextLink>
+              </div>
             </div>
             <div className="space-y-4 text-base leading-8 text-soos-ink/90">
               <p>
@@ -88,25 +84,12 @@ export default async function Home() {
       {soon.length > 0 ? (
         <section aria-labelledby="binnenkort-titel" className="px-4 pb-16 sm:pb-24">
           <div className="mx-auto max-w-6xl">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2
-                  id="binnenkort-titel"
-                  className="text-3xl font-bold tracking-tight text-soos-dark sm:text-4xl"
-                >
-                  Binnenkort in de soos
-                </h2>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-soos-purple">
-                  De eerstvolgende activiteiten
-                </p>
-              </div>
-              <Link
-                href="/activiteiten"
-                className="text-sm font-semibold text-soos-dark underline decoration-soos-purple/40 underline-offset-4 hover:decoration-soos-purple"
-              >
-                Alle activiteiten <span aria-hidden>→</span>
-              </Link>
-            </div>
+            <SectionHeading
+              id="binnenkort-titel"
+              eyebrow="De eerstvolgende activiteiten"
+              title="Binnenkort in de soos"
+              action={<TextLink href="/activiteiten">Alle activiteiten</TextLink>}
+            />
             <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {soon.map((activity) => (
                 <li key={`${activity.date}-${activity.name}`}>
@@ -136,12 +119,11 @@ export default async function Home() {
               Steun onze activiteiten en hang jouw logo op de Wall of Fame. En mis niks.
             </p>
           </div>
-          <Link
-            href="/sponsoren#vrienden"
-            className="relative inline-flex shrink-0 rounded-full bg-white px-6 py-3 text-sm font-semibold text-soos-dark shadow-lg shadow-black/20 transition hover:bg-soos-mist"
-          >
-            Bekijk de mogelijkheden
-          </Link>
+          <div className="relative shrink-0">
+            <ButtonLink href="/sponsoren#vrienden" variant="light" arrow>
+              Bekijk de mogelijkheden
+            </ButtonLink>
+          </div>
         </div>
       </section>
     </div>

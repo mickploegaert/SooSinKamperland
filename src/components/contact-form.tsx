@@ -1,6 +1,8 @@
 "use client";
 
+import { Check } from "lucide-react";
 import { useActionState } from "react";
+import { SubmitButton } from "@/components/button";
 import { sendContact } from "@/app/contact/actions";
 import { contactSubjects, type ContactField, type ContactState } from "@/lib/contact-schema";
 
@@ -46,9 +48,9 @@ export function ContactForm() {
       >
         <span
           aria-hidden
-          className="flex size-16 items-center justify-center rounded-full bg-soos-purple text-3xl text-white"
+          className="flex size-16 items-center justify-center rounded-full bg-soos-purple text-white"
         >
-          ✓
+          <Check className="size-8" />
         </span>
         <h2 className="mt-5 text-2xl font-bold text-soos-dark">Bericht verstuurd</h2>
         <p className="mt-2 max-w-sm text-base text-soos-ink/85">{state.message}</p>
@@ -146,14 +148,9 @@ export function ContactForm() {
 
       {/* Cloudflare Turnstile komt hier (div met class="cf-turnstile" en de sitekey). */}
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-soos-purple px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-soos-purple/25 transition hover:bg-[#3f1080] focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
-      >
-        {pending ? "Versturen…" : "Verstuur bericht"}
-        <span aria-hidden>→</span>
-      </button>
+      <SubmitButton pending={pending} pendingLabel="Versturen…">
+        Verstuur bericht
+      </SubmitButton>
     </form>
   );
 }
