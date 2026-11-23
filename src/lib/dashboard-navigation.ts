@@ -8,6 +8,7 @@ export const dashboardNavigation: DashboardNavItem[] = [
   { href: "/dashboard", label: "Overzicht" },
   { href: "/dashboard/activiteiten", label: "Activiteiten" },
   { href: "/dashboard/website", label: "Website" },
+  { href: "/dashboard/sponsoren", label: "Sponsoren" },
 ];
 
 export function isActiveDashboardItem(pathname: string, href: string) {

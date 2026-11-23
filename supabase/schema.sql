@@ -66,3 +66,21 @@ create policy "iedereen leest zichtbare activiteiten" on public.activiteit
   for select using (is_zichtbaar or public.is_beheerder());
 create policy "beheerders beheren activiteiten" on public.activiteit
   for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
+
+-- ─── Sponsoren (US10) ────────────────────────────────────────────────────────
+create table if not exists public.sponsor (
+  sponsor_id            bigint generated always as identity primary key,
+  naam                  varchar(255) not null,
+  beschrijving          text,
+  logo_url              varchar(255),
+  website_url           varchar(255),
+  niveau                varchar(10) check (niveau in ('goud', 'zilver', 'brons')),
+  is_vriend_van_de_soos boolean not null default false,
+  weergave_volgorde     int     not null default 0,
+  beheerder_id          bigint references public.beheerder (beheerder_id) on delete set null
+);
+
+alter table public.sponsor enable row level security;
+create policy "iedereen leest sponsoren" on public.sponsor for select using (true);
+create policy "beheerders beheren sponsoren" on public.sponsor
+  for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());

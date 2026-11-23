@@ -2,6 +2,8 @@ import type {
   Activity,
   ActivityInput,
   Admin,
+  Sponsor,
+  SponsorInput,
   WebsiteContent, WebsiteContentInput, WebsitePage } from "./types";
 
 /**
@@ -36,8 +38,11 @@ export interface ActivityRepository extends CrudRepository<Activity, ActivityInp
   listUpcoming(today: string): Promise<Activity[]>;
 }
 
+export type SponsorRepository = CrudRepository<Sponsor, SponsorInput>;
+
 export interface Database {
   admins: AdminRepository;
   websiteContent: WebsiteContentRepository;
   activities: ActivityRepository;
+  sponsors: SponsorRepository;
 }

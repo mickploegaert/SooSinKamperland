@@ -90,3 +90,36 @@ export type Activity = {
 };
 
 export type ActivityInput = Omit<Activity, "id">;
+
+/** Sponsorniveaus uit het schermontwerp van de sponsorenpagina. */
+export const SPONSOR_LEVELS = [
+  { value: "goud", label: "Goud", amount: "€1.000+" },
+  { value: "zilver", label: "Zilver", amount: "€500 – €1.000" },
+  { value: "brons", label: "Brons", amount: "€100 – €500" },
+] as const;
+
+export type SponsorLevel = (typeof SPONSOR_LEVELS)[number]["value"];
+
+/** Tabel `sponsor` */
+export type Sponsor = {
+  /** sponsor_id */
+  id: number;
+  /** naam */
+  name: string;
+  /** beschrijving */
+  description: string | null;
+  /** logo_url */
+  logoUrl: string | null;
+  /** website_url */
+  websiteUrl: string | null;
+  /** niveau (categorie in het klassendiagram) */
+  level: SponsorLevel | null;
+  /** is_vriend_van_de_soos */
+  isFriend: boolean;
+  /** weergave_volgorde */
+  sortOrder: number;
+  /** beheerder_id (FK) */
+  updatedBy: number;
+};
+
+export type SponsorInput = Omit<Sponsor, "id">;
