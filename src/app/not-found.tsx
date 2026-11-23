@@ -1,3 +1,4 @@
+import { SearchX } from "lucide-react";
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/button";
 import { PageHero } from "@/components/page-hero";
@@ -12,16 +13,28 @@ export default function NotFound() {
         op weg.
       </PageHero>
       <section className="relative z-10 -mt-16 px-4 pb-20">
-        <div className="mx-auto flex max-w-6xl flex-wrap gap-3 rounded-panel bg-white p-6 shadow-card-lift ring-1 ring-soos-dark/5 sm:p-10">
-          <ButtonLink href="/" arrow>
-            Naar de homepage
-          </ButtonLink>
-          <ButtonLink href="/activiteiten" variant="secondary">
-            Bekijk activiteiten
-          </ButtonLink>
-          <ButtonLink href="/contact" variant="secondary">
-            Contact
-          </ButtonLink>
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 rounded-panel bg-white p-6 text-center shadow-card-lift ring-1 ring-soos-dark/5 sm:p-12">
+          <div aria-hidden className="relative select-none">
+            <span className="font-display text-[7rem] font-bold leading-none tracking-tight text-soos-purple/15 sm:text-[10rem]">
+              404
+            </span>
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className="flex size-16 items-center justify-center rounded-full bg-soos-purple text-white shadow-card-lift sm:size-20">
+                <SearchX className="size-8 sm:size-10" />
+              </span>
+            </span>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            <ButtonLink href="/" arrow>
+              Naar de homepage
+            </ButtonLink>
+            <ButtonLink href="/activiteiten" variant="secondary">
+              Bekijk activiteiten
+            </ButtonLink>
+            <ButtonLink href="/contact" variant="secondary">
+              Contact
+            </ButtonLink>
+          </div>
         </div>
       </section>
     </div>

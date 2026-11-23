@@ -27,7 +27,8 @@ export default async function Home() {
           sizes="100vw"
           className="object-cover object-[center_35%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-soos-dark via-soos-dark/75 to-soos-dark/20" />
+        <div className="absolute inset-0 bg-soos-deep/35 sm:bg-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-soos-deep/90 via-soos-deep/50 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-soos-mist" />
         <div className="relative mx-auto flex min-h-[36rem] max-w-6xl items-center px-4 pb-40 pt-16 sm:min-h-[42rem] sm:pb-48">
           <div className="max-w-xl">
