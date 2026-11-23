@@ -64,11 +64,12 @@ export function BackLink({ href, label }: { href: string; label: string }) {
 /** Kader met rand rond tabellen, zoals "Recente registraties" in het ontwerp. */
 export function TableCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-soos-line bg-white px-3 py-2">
+    <div className="overflow-x-auto rounded-lg border border-soos-line bg-white px-3 py-2 text-soos-navy">
       {children}
     </div>
   );
 }
 
 export const th = "px-2 py-3 text-left text-xs font-semibold text-soos-muted";
-export const td = "border-t border-soos-line px-2 py-4 text-sm text-soos-navy";
+// Geen tekstkleur hier: die erft van TableCard, zodat cellen een eigen kleur kunnen krijgen.
+export const td = "border-t border-soos-line px-2 py-4 text-sm";
