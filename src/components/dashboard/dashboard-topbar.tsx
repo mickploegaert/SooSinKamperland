@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
+import { logout } from "@/lib/actions/auth";
 import type { AdminProfile } from "@/lib/data/types";
 
 export function DashboardTopbar({ admin }: { admin: AdminProfile }) {
@@ -18,6 +19,14 @@ export function DashboardTopbar({ admin }: { admin: AdminProfile }) {
         <span className="hidden text-xs font-normal text-white/60 md:inline" title={admin.email}>
           Ingelogd als {admin.username}
         </span>
+        <form action={logout}>
+          <button
+            type="submit"
+            className="rounded-lg bg-soos-violet px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-soos-violet-hover"
+          >
+            Uitloggen
+          </button>
+        </form>
       </div>
     </header>
   );
