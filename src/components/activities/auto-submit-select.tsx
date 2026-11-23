@@ -19,7 +19,7 @@ export function AutoSubmitSelect({
         name={name}
         defaultValue={value}
         onChange={(event) => event.currentTarget.form?.requestSubmit()}
-        className="h-10 appearance-none rounded-lg border border-soos-line bg-soos-mist py-0 pl-3.5 pr-9 text-sm font-semibold text-soos-navy hover:border-soos-violet/40 focus:border-soos-violet focus:outline-none"
+        className="h-10 appearance-none rounded-lg border border-soos-line bg-soos-surface py-0 pl-3.5 pr-9 text-sm font-semibold text-soos-navy hover:border-soos-violet/40 focus:border-soos-violet focus:outline-none"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

@@ -45,7 +45,7 @@ export default async function SponsorsPage({ searchParams }: PageProps<"/dashboa
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={sponsor.logoUrl} alt="" className="h-8 w-12 object-contain" />
                       ) : (
-                        <span className="block h-8 w-12 rounded bg-soos-mist" />
+                        <span className="block h-8 w-12 rounded bg-soos-surface" />
                       )}
                     </td>
                     <td className={`${td} font-semibold`}>{sponsor.name}</td>

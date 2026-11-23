@@ -11,7 +11,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         Ga naar de inhoud
       </a>
       <SiteHeader />
-      <main id="inhoud" className="flex flex-1 flex-col">
+      <main id="inhoud" className="flex flex-1 flex-col *:w-full">
         {children}
       </main>
       <SiteFooter />

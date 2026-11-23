@@ -1,7 +1,7 @@
 import type { FormState } from "@/lib/forms";
 
 const inputClass =
-  "mt-2 block w-full rounded-md border border-soos-line bg-soos-mist px-3 text-sm text-soos-navy placeholder:text-soos-muted/70 focus:border-soos-violet focus:outline-none aria-invalid:border-soos-expense";
+  "mt-2 block w-full rounded-md border border-soos-line bg-soos-surface px-3 text-sm text-soos-navy placeholder:text-soos-muted/70 focus:border-soos-violet focus:outline-none aria-invalid:border-soos-expense";
 
 type BaseProps = {
   name: string;

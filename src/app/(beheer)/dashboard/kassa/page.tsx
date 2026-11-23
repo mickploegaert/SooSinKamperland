@@ -34,7 +34,7 @@ export default async function RegisterPage() {
   const cards = [
     { label: "Omzet vandaag", value: formatEuro(summary.revenueTodayCents), className: "bg-soos-income-soft" },
     { label: "Omzet afgelopen 7 dagen", value: formatEuro(summary.revenueWeekCents), className: "bg-soos-lilac" },
-    { label: "Transacties vandaag", value: String(summary.transactionsToday), className: "bg-soos-mist" },
+    { label: "Transacties vandaag", value: String(summary.transactionsToday), className: "bg-soos-surface" },
   ];
 
   return (
