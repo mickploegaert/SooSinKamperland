@@ -10,7 +10,7 @@ export function DashboardSidebar() {
   return (
     <nav
       aria-label="Dashboardmenu"
-      className="focus-light rounded-xl bg-soos-navy px-3 py-4 text-white lg:min-h-[calc(100vh-7.5rem)] lg:px-4 lg:py-6"
+      className="focus-light rounded-xl bg-soos-navy px-3 py-4 text-white lg:min-h-[calc(100vh-7.5rem)] lg:flex-1 lg:px-4 lg:py-6"
     >
       <p className="px-2 text-xs font-semibold uppercase tracking-wider text-[#c9c3e6]">Menu</p>
       <ul className="mt-3 flex gap-1 overflow-x-auto lg:mt-5 lg:flex-col lg:gap-3">

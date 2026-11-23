@@ -6,6 +6,7 @@ export type DashboardNavItem = {
 /** Zijbalkmenu uit het schermontwerp "Dashboard & financiën". */
 export const dashboardNavigation: DashboardNavItem[] = [
   { href: "/dashboard", label: "Overzicht" },
+  { href: "/dashboard/website", label: "Website" },
 ];
 
 export function isActiveDashboardItem(pathname: string, href: string) {

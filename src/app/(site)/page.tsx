@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ContentSections, Paragraphs } from "@/components/content-sections";
+import { getPageContent, splitHero } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "Home",
 };
 
-export default function Home() {
+export default async function Home() {
+  const { hero, sections } = splitHero(await getPageContent("home"));
+
   return (
     <div className="flex flex-1 flex-col bg-soos-mist">
       <section className="relative isolate min-h-[36rem] overflow-hidden bg-soos-dark text-white sm:min-h-[42rem]">
@@ -26,12 +30,16 @@ export default function Home() {
               Soos in Kamperland
             </p>
             <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-6xl sm:leading-[1.05]">
-              Welkom bij Soos in Kamperland
+              {hero?.title ?? "Welkom bij Soos in Kamperland"}
             </h1>
-            <p className="mt-5 max-w-md text-base leading-7 text-white/90 sm:text-lg">
-              Dé plek voor jong en oud in Kamperland. Bekijk onze activiteiten
-              en meer!
-            </p>
+            <div className="mt-5 max-w-md space-y-3 text-base leading-7 text-white/90 sm:text-lg">
+              <Paragraphs
+                text={
+                  hero?.body ??
+                  "Dé plek voor jong en oud in Kamperland. Bekijk onze activiteiten en meer!"
+                }
+              />
+            </div>
             <Link
               href="/activiteiten"
               className="mt-8 inline-flex rounded-full bg-soos-purple px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/20 transition hover:bg-[#3f1080]"
@@ -77,6 +85,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <ContentSections items={sections} />
     </div>
   );
 }
