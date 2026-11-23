@@ -1,6 +1,7 @@
 import { Mail, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
+import { MapEmbed } from "@/components/map-embed";
 import { PageCard, PageHero } from "@/components/page-hero";
 import { SocialIcons } from "@/components/social-icons";
 import { contactInfo } from "@/lib/contact-info";
@@ -80,6 +81,21 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        <section aria-labelledby="route-titel" className="mt-14">
+          <h2 id="route-titel" className="text-2xl font-bold tracking-tight text-soos-dark">
+            Route
+          </h2>
+          <p className="mt-1 text-sm text-soos-ink/80">
+            {contactInfo.street}, {contactInfo.postalCode} {contactInfo.city}
+          </p>
+          <div className="mt-5 overflow-hidden rounded-2xl ring-1 ring-soos-dark/10">
+            <MapEmbed
+              src={contactInfo.embedUrl}
+              title={`Kaart met de locatie van Soos in Kamperland, ${contactInfo.street}, ${contactInfo.city}`}
+            />
+          </div>
+        </section>
       </PageCard>
     </div>
   );

@@ -1,7 +1,7 @@
 "use server";
 
 import { contactSubjects, type ContactState } from "@/lib/contact-schema";
-import { sendContactMail } from "@/lib/mail";
+import { sendMail } from "@/lib/mail";
 import { verifyTurnstile } from "@/lib/turnstile";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -53,7 +53,11 @@ export async function sendContact(
     };
   }
 
-  const sent = await sendContactMail(values);
+  const sent = await sendMail({
+    subject: `Contactformulier: ${values.subject}`,
+    replyTo: { name: values.name, email: values.email },
+    fields: { Naam: values.name, "E-mailadres": values.email, Onderwerp: values.subject, Bericht: values.message },
+  });
   if (!sent) {
     return {
       status: "error",

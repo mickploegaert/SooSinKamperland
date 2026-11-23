@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { connection } from "next/server";
+import { CalendarPlus } from "lucide-react";
+import { ButtonLink } from "@/components/button";
 import { PageCard, PageHero } from "@/components/page-hero";
 import {
+  activitySlug,
   formatDayMonth,
   formatMonthYear,
   formatWeekday,
@@ -38,6 +41,22 @@ export default async function AgendaPage() {
           </p>
         ) : (
           <div className="space-y-12">
+            <div className="flex flex-col gap-4 rounded-2xl bg-soos-mist p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <CalendarPlus aria-hidden className="mt-0.5 size-6 shrink-0 text-soos-purple" />
+                <p className="text-sm leading-6 text-soos-ink/90">
+                  <span className="font-semibold text-soos-dark">Zet alles in je eigen agenda.</span>{" "}
+                  Download een agendabestand en open het in Google Agenda, Outlook of Apple Agenda.
+                </p>
+              </div>
+              <a
+                href="/agenda.ics"
+                download
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-soos-purple px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-soos-purple/25 transition hover:bg-[#3f1080] active:scale-[0.98]"
+              >
+                Download agenda (.ics)
+              </a>
+            </div>
             {groups.map((group) => (
               <section key={group.label} aria-label={group.label}>
                 <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-soos-purple">
@@ -60,7 +79,7 @@ export default async function AgendaPage() {
                             {month}
                           </span>
                         </time>
-                        <div>
+                        <div className="flex-1">
                           <p className="text-xs font-semibold uppercase tracking-wider text-soos-purple">
                             {formatWeekday(item.date)}
                           </p>
@@ -69,6 +88,15 @@ export default async function AgendaPage() {
                             {item.description}
                           </p>
                         </div>
+                        <ButtonLink
+                          href={`/aanmelden?activiteit=${activitySlug(item)}`}
+                          variant="secondary"
+                          size="sm"
+                          className="hidden sm:inline-flex"
+                        >
+                          Aanmelden
+                          <span className="sr-only"> voor {item.name}</span>
+                        </ButtonLink>
                       </li>
                     );
                   })}

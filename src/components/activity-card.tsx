@@ -1,6 +1,8 @@
 import { CalendarDays } from "lucide-react";
 import Image from "next/image";
+import { ButtonLink } from "@/components/button";
 import {
+  activitySlug,
   formatActivityDate,
   formatDayMonth,
   formatWeekday,
@@ -70,6 +72,17 @@ export function ActivityCard({
         >
           {activity.description}
         </p>
+        <div className="mt-auto pt-5">
+          <ButtonLink
+            href={`/aanmelden?activiteit=${activitySlug(activity)}`}
+            variant="secondary"
+            size="sm"
+            arrow
+          >
+            Aanmelden
+            <span className="sr-only"> voor {activity.name}</span>
+          </ButtonLink>
+        </div>
       </div>
     </article>
   );

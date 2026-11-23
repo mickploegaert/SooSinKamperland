@@ -32,7 +32,7 @@ export const sponsors: Sponsor[] = [
   {
     name: "Schildersbedrijf Jongejan",
     logo: "/sponsoren/schildersbedrijf-jongejan.png",
-    description: "Schildersbedrijf in Kamperland en omgeving.",
+    description: "Schildersbedrijf.",
   },
   {
     name: "Eriks Optiek",
@@ -45,14 +45,14 @@ export const sponsors: Sponsor[] = [
     description: "Verse vis.",
   },
   {
-    name: "TA Makelaardij",
+    name: "T.A. Makelaardij",
     logo: "/sponsoren/ta-makelaardij.jpeg",
     description: "Makelaardij.",
   },
   {
     name: "Novelty",
     logo: "/sponsoren/novelty.png",
-    description: "Skin & health.",
+    description: "Schoonheidssalon Kamperland.",
   },
   {
     name: "Zilt Beauty",
@@ -67,7 +67,7 @@ export const sponsors: Sponsor[] = [
   {
     name: "Tino van Leeuwen",
     logo: "/sponsoren/tino-van-leeuwen.jpeg",
-    description: "Vloerbedekking.",
+    description: "Complete woningstoffering.",
   },
   {
     name: "Jacare",

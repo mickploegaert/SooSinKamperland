@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -11,11 +12,24 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Soos in Kamperland",
-    template: "%s | Soos in Kamperland",
+    default: siteName,
+    template: `%s | ${siteName}`,
   },
-  description: "Website van Soos in Kamperland.",
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    siteName,
+    title: siteName,
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

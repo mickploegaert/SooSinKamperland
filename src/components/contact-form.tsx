@@ -1,61 +1,18 @@
 "use client";
 
-import { Check } from "lucide-react";
 import { useActionState } from "react";
-import { SubmitButton } from "@/components/button";
 import { sendContact } from "@/app/contact/actions";
+import { SubmitButton } from "@/components/button";
+import { ErrorBanner, Field, Honeypot, SuccessMessage, inputClass } from "@/components/form-fields";
 import { contactSubjects, type ContactField, type ContactState } from "@/lib/contact-schema";
 
 const initialState: ContactState = { status: "idle" };
-
-const inputClass =
-  "mt-2 block w-full rounded-xl border border-soos-dark/15 bg-white px-4 py-3 text-base text-soos-ink shadow-sm transition placeholder:text-soos-ink/40 focus:border-soos-purple focus:outline-none focus:ring-4 focus:ring-soos-purple/15 aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-600/10";
-
-function Field({
-  id,
-  label,
-  error,
-  children,
-}: {
-  id: ContactField;
-  label: string;
-  error?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <label htmlFor={id} className="text-sm font-semibold text-soos-dark">
-        {label}
-      </label>
-      {children}
-      {error ? (
-        <p id={`${id}-fout`} className="mt-2 text-sm font-medium text-red-700">
-          {error}
-        </p>
-      ) : null}
-    </div>
-  );
-}
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(sendContact, initialState);
 
   if (state.status === "success") {
-    return (
-      <div
-        role="status"
-        className="flex h-full flex-col items-center justify-center rounded-2xl bg-soos-mist px-6 py-14 text-center"
-      >
-        <span
-          aria-hidden
-          className="flex size-16 items-center justify-center rounded-full bg-soos-purple text-white"
-        >
-          <Check className="size-8" />
-        </span>
-        <h2 className="mt-5 text-2xl font-bold text-soos-dark">Bericht verstuurd</h2>
-        <p className="mt-2 max-w-sm text-base text-soos-ink/85">{state.message}</p>
-      </div>
-    );
+    return <SuccessMessage title="Bericht verstuurd" message={state.message} />;
   }
 
   const errors = state.errors ?? {};
@@ -64,14 +21,7 @@ export function ContactForm() {
 
   return (
     <form action={action} noValidate className="space-y-5">
-      {state.status === "error" && state.message ? (
-        <p
-          role="alert"
-          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800"
-        >
-          {state.message}
-        </p>
-      ) : null}
+      <ErrorBanner message={state.status === "error" ? state.message : undefined} />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="name" label="Naam" error={errors.name}>
@@ -140,13 +90,17 @@ export function ContactForm() {
         />
       </Field>
 
-      {/* Lokvalk voor bots: mensen zien en vullen dit veld niet in. */}
-      <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor="website">Laat dit veld leeg</label>
-        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-      </div>
+      <Honeypot />
 
       {/* Cloudflare Turnstile komt hier (div met class="cf-turnstile" en de sitekey). */}
+
+      <p className="text-sm text-soos-ink/75">
+        Je gegevens gebruiken we alleen om te antwoorden. Lees onze{" "}
+        <a href="/privacy" className="font-semibold text-soos-purple underline underline-offset-2">
+          privacyverklaring
+        </a>
+        .
+      </p>
 
       <SubmitButton pending={pending} pendingLabel="Versturen…">
         Verstuur bericht

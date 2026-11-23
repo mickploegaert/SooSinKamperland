@@ -105,3 +105,13 @@ export function upcomingActivities(today = new Date()) {
     })
     .sort((a, b) => a.date.localeCompare(b.date));
 }
+
+export function activitySlug(activity: Activity) {
+  const name = activity.name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return `${activity.date}-${name}`;
+}

@@ -66,9 +66,12 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-6xl px-4 py-5 text-xs text-white/60">
-          &copy; {new Date().getFullYear()} Soos in Kamperland
-        </p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {new Date().getFullYear()} Soos in Kamperland</p>
+          <Link href="/privacy" className="hover:text-white hover:underline">
+            Privacyverklaring
+          </Link>
+        </div>
       </div>
     </footer>
   );
