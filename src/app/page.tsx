@@ -3,6 +3,7 @@ import Image from "next/image";
 import { connection } from "next/server";
 import { ActivityCard } from "@/components/activity-card";
 import { ButtonLink, TextLink } from "@/components/button";
+import { SectionDivider } from "@/components/section-divider";
 import { SectionHeading } from "@/components/section-heading";
 import { SponsorStrip } from "@/components/sponsor-strip";
 import { upcomingActivities } from "@/lib/activities";
@@ -84,8 +85,10 @@ export default async function Home() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {soon.length > 0 ? (
-        <section aria-labelledby="binnenkort-titel" className="px-4 pb-16 sm:pb-24">
+        <section aria-labelledby="binnenkort-titel" className="px-4 py-14 sm:py-20">
           <div className="mx-auto max-w-6xl">
             <SectionHeading
               id="binnenkort-titel"
@@ -104,7 +107,7 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <div className="mb-16 bg-soos-cream py-16 sm:mb-24 sm:py-20">
+      <div className="mb-16 border-y border-soos-dark/10 bg-white py-14 sm:mb-24 sm:py-16">
         <SponsorStrip />
       </div>
 

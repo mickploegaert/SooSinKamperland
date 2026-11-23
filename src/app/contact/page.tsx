@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { MapEmbed } from "@/components/map-embed";
 import { PageCard, PageHero } from "@/components/page-hero";
-import { SocialIcons } from "@/components/social-icons";
+import { SocialCards } from "@/components/social-icons";
 import { contactInfo } from "@/lib/contact-info";
 
 export const metadata: Metadata = {
@@ -67,8 +67,8 @@ export default function ContactPage() {
               <p className="mt-2 text-base text-soos-ink/85">
                 Blijf op de hoogte van onze activiteiten op social media.
               </p>
-              <div className="mt-4 inline-flex rounded-card bg-soos-dark p-3">
-                <SocialIcons />
+              <div className="mt-4">
+                <SocialCards />
               </div>
             </div>
           </div>

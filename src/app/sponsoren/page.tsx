@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonLink } from "@/components/button";
 import { PageCard, PageHero } from "@/components/page-hero";
+import { SectionDivider } from "@/components/section-divider";
 import { SectionHeading } from "@/components/section-heading";
 import { friendTiers, sponsors, type FriendTier } from "@/lib/sponsors";
 
@@ -43,7 +44,7 @@ export default function SponsorenPage() {
     <div className="bg-soos-mist">
       <PageHero eyebrow="Samen maken we het mogelijk" title="Onze sponsoren">
         Dankzij deze bedrijven kunnen wij bingo&apos;s, filmmiddagen, knutselmiddagen en
-        disco&apos;s organiseren voor kinderen en jongeren in en rond Kamperland. Hartelijk
+        disco&apos;s organiseren voor jong en oud in en rond Kamperland. Hartelijk
         bedankt!
       </PageHero>
 
@@ -91,10 +92,12 @@ export default function SponsorenPage() {
         </ul>
       </PageCard>
 
+      <SectionDivider />
+
       <section
         id="vrienden"
         aria-labelledby="vrienden-titel"
-        className="scroll-mt-20 px-4 pb-20 sm:pb-28"
+        className="scroll-mt-20 px-4 pb-20 pt-14 sm:pb-28 sm:pt-20"
       >
         <div className="relative mx-auto max-w-6xl overflow-hidden rounded-panel bg-soos-dark px-6 py-12 text-white sm:px-12 sm:py-16">
           <div

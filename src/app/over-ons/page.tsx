@@ -3,42 +3,43 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonLink } from "@/components/button";
 import { PageCard, PageHero } from "@/components/page-hero";
+import { SectionDivider } from "@/components/section-divider";
 import { SectionHeading } from "@/components/section-heading";
 import { team } from "@/lib/team";
 
 export const metadata: Metadata = {
   title: "Over ons",
   description:
-    "Maak kennis met de vrijwilligers van Soos in Kamperland en lees wat wij organiseren voor kinderen en jongeren.",
+    "Maak kennis met de vrijwilligers van Soos in Kamperland en lees wat wij organiseren voor jong en oud.",
 };
 
 const doing: { label: string; text: string; icon: LucideIcon }[] = [
   { label: "Knutselen", text: "Creatief aan de slag met je vrienden.", icon: Palette },
   { label: "Bingo", text: "Een gezellige avond met mooie prijzen.", icon: Gift },
   { label: "Disco", text: "Dansen onder de discoballen.", icon: Music },
-  { label: "Filmmiddag", text: "Samen een film kijken in de soos.", icon: Clapperboard },
+  { label: "Filmavond", text: "Samen een film kijken in de soos.", icon: Clapperboard },
 ];
 
 export default function OverOnsPage() {
   return (
     <div className="bg-soos-mist">
-      <PageHero eyebrow="Wij heten je welkom bij de Jeugd Soos" title="Over ons">
+      <PageHero eyebrow="Welkom bij Soos in Kamperland" title="Over ons">
         Wie zijn wij en wat doen we? Hier lees je het verhaal van Soos in Kamperland.
       </PageHero>
 
       <PageCard>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <SectionHeading id="verhaal-titel" eyebrow="Wat is ons verhaal" title="De Jeugd Soos" />
+          <SectionHeading id="verhaal-titel" eyebrow="Wat is ons verhaal" title="Een plek voor jong en oud" />
           <div className="space-y-4 text-base leading-8 text-soos-ink/90">
             <p>
-              De soos wordt gerund door een groep enthousiaste vrijwilligers die de nodige uren
-              spenderen om leuke middag- en avondactiviteiten te organiseren voor kinderen en
-              jongeren in en rond Kamperland.
+              Soos in Kamperland is er voor iedereen in en rond Kamperland: kinderen, jongeren en
+              volwassenen. De soos wordt gerund door een groep enthousiaste vrijwilligers die de
+              nodige uren spenderen om leuke middag- en avondactiviteiten te organiseren.
             </p>
             <p>
-              Hierbij moet je denken aan knutselen, een bingo, een disco of het samen kijken van
-              een film. Het sponsorgeld dat we ontvangen, gebruiken we om deze activiteiten
-              mogelijk te maken.
+              Denk aan knutselen, bingo, een disco of een gezellige filmavond. Het sponsorgeld dat
+              we ontvangen, gebruiken we om al deze activiteiten mogelijk te maken. Kom gerust
+              eens langs, iedereen is welkom.
             </p>
           </div>
         </div>
@@ -59,7 +60,9 @@ export default function OverOnsPage() {
         </ul>
       </PageCard>
 
-      <section aria-labelledby="team-titel" className="px-4 pb-20 sm:pb-28">
+      <SectionDivider />
+
+      <section aria-labelledby="team-titel" className="px-4 py-14 sm:py-20">
         <div className="mx-auto max-w-6xl">
           <SectionHeading id="team-titel" eyebrow="De mensen achter de soos" title="Ons team" />
           <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

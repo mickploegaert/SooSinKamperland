@@ -13,7 +13,7 @@ const sections: { title: string; body: React.ReactNode }[] = [
     body: (
       <p>
         Soos in Kamperland is een vrijwilligersorganisatie die activiteiten organiseert voor
-        kinderen en jongeren in en rond Kamperland. Wij zijn verantwoordelijk voor de
+        jong en oud in en rond Kamperland. Wij zijn verantwoordelijk voor de
         verwerking van je persoonsgegevens, zoals beschreven in deze verklaring. Je bereikt ons
         via{" "}
         <a className="font-semibold text-soos-purple underline" href={`mailto:${contactInfo.email}`}>
