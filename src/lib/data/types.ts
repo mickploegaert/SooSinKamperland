@@ -123,3 +123,30 @@ export type Sponsor = {
 };
 
 export type SponsorInput = Omit<Sponsor, "id">;
+
+export type TransactionType = "inkomst" | "uitgave";
+
+/** Herkomst van een registratie: handmatig in het dashboard of uit een koppeling. */
+export type TransactionSource = "handmatig" | "sumup";
+
+/** Tabel `financiele_transactie` */
+export type FinancialTransaction = {
+  /** transactie_id */
+  id: number;
+  /** transactietype */
+  type: TransactionType;
+  /** bedrag in centen (DECIMAL(10,2) in de database), altijd positief */
+  amountCents: number;
+  /** datum, JJJJ-MM-DD */
+  date: string;
+  /** omschrijving */
+  description: string;
+  /** bron */
+  source: TransactionSource;
+  /** externe_transactie_id (UK) — gevuld bij transacties uit SumUp */
+  externalId: string | null;
+  /** beheerder_id (FK) */
+  createdBy: number;
+};
+
+export type FinancialTransactionInput = Omit<FinancialTransaction, "id">;

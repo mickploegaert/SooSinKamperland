@@ -84,3 +84,21 @@ alter table public.sponsor enable row level security;
 create policy "iedereen leest sponsoren" on public.sponsor for select using (true);
 create policy "beheerders beheren sponsoren" on public.sponsor
   for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
+
+-- ─── Financiële transacties (US13, US14) ─────────────────────────────────────
+-- Inkomsten en uitgaven staan in één tabel en worden gescheiden via transactietype.
+create table if not exists public.financiele_transactie (
+  transactie_id         bigint generated always as identity primary key,
+  transactietype        varchar(20)   not null check (transactietype in ('inkomst', 'uitgave')),
+  bedrag                decimal(10,2) not null check (bedrag > 0),
+  datum                 date          not null,
+  omschrijving          text          not null,
+  bron                  varchar(20)   not null default 'handmatig',
+  externe_transactie_id varchar(255)  unique,
+  beheerder_id          bigint references public.beheerder (beheerder_id) on delete set null
+);
+
+alter table public.financiele_transactie enable row level security;
+-- Alleen beheerders mogen financiële gegevens zien of wijzigen.
+create policy "beheerders beheren financiën" on public.financiele_transactie
+  for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
