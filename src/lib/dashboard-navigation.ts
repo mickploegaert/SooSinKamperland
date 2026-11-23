@@ -11,6 +11,7 @@ export const dashboardNavigation: DashboardNavItem[] = [
   { href: "/dashboard/uitgaven", label: "Uitgaven" },
   { href: "/dashboard/website", label: "Website" },
   { href: "/dashboard/sponsoren", label: "Sponsoren" },
+  { href: "/dashboard/kassa", label: "Kassa" },
   { href: "/dashboard/sumup", label: "SumUp" },
 ];
 
