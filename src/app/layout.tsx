@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fredoka, Poppins } from "next/font/google";
+import Script from "next/script";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
@@ -16,6 +17,9 @@ const poppins = Poppins({
   weight: ["400", "600", "700"],
   variable: "--font-poppins",
 });
+
+// Cookievrije bezoekersstatistiek. Alleen actief als dit domein is ingesteld.
+const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -53,6 +57,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        {plausibleDomain ? (
+          <Script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   );

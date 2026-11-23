@@ -64,6 +64,11 @@ const sections: { title: string; body: React.ReactNode }[] = [
             geautomatiseerde programma&apos;s te voorkomen.
           </li>
           <li>
+            <strong>Plausible Analytics</strong> (alleen als de soos dit inschakelt) om
+            anoniem te tellen hoeveel mensen de website bezoeken. Plausible gebruikt geen
+            cookies en slaat geen persoonsgegevens op.
+          </li>
+          <li>
             <strong>Google Maps</strong> voor de kaart op de contactpagina. De kaart laden wij
             pas nadat je daarvoor kiest. Google ontvangt dan je IP-adres.
           </li>
@@ -76,7 +81,8 @@ const sections: { title: string; body: React.ReactNode }[] = [
     body: (
       <p>
         Deze website plaatst zelf geen tracking- of advertentiecookies. Wij gebruiken geen
-        analysetools die je volgen.
+        analysetools die je volgen. Het bezoekersaantal tellen wij alleen anoniem en zonder
+        cookies.
       </p>
     ),
   },

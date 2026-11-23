@@ -1,10 +1,36 @@
-import { Mail, MapPin } from "lucide-react";
+import { ChevronDown, Mail, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { MapEmbed } from "@/components/map-embed";
 import { PageCard, PageHero } from "@/components/page-hero";
 import { SocialCards } from "@/components/social-icons";
 import { contactInfo } from "@/lib/contact-info";
+
+export const faqs = [
+  {
+    question: "Moet ik me aanmelden voor een activiteit?",
+    answer:
+      "Dat staat bij de activiteit. Aanmelden helpt ons om te weten hoeveel mensen er komen. Gebruik daarvoor de knop Aanmelden bij de activiteit.",
+  },
+  {
+    question: "Wat kost het om mee te doen?",
+    answer:
+      "De kosten verschillen per activiteit. Heb je een vraag over de prijs, stuur ons dan een bericht, dan laten we het je weten.",
+  },
+  {
+    question: "Voor wie zijn de activiteiten?",
+    answer: "Voor iedereen: jong en oud uit Kamperland en omgeving is welkom.",
+  },
+  {
+    question: "Hoe kan ik sponsor worden?",
+    answer:
+      "Kijk op de sponsorpagina bij Vrienden van de Soos. Daar kun je kiezen uit een gouden, zilveren of bronzen vriendschap.",
+  },
+  {
+    question: "Kan ik helpen als vrijwilliger?",
+    answer: "Graag. Stuur ons een bericht via het formulier, dan nemen we contact met je op.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -81,6 +107,26 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        <section aria-labelledby="faq-titel" className="mt-14">
+          <h2 id="faq-titel" className="text-2xl font-bold tracking-tight text-soos-dark">
+            Veelgestelde vragen
+          </h2>
+          <div className="mt-5 divide-y divide-soos-dark/10 overflow-hidden rounded-card ring-1 ring-soos-dark/10">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="group bg-white">
+                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-semibold text-soos-dark transition hover:bg-soos-mist [&::-webkit-details-marker]:hidden">
+                  {faq.question}
+                  <ChevronDown
+                    aria-hidden
+                    className="size-5 shrink-0 text-soos-purple transition group-open:rotate-180 motion-reduce:transition-none"
+                  />
+                </summary>
+                <p className="px-5 pb-5 text-base leading-7 text-soos-ink/85">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
 
         <section aria-labelledby="route-titel" className="mt-14">
           <h2 id="route-titel" className="text-2xl font-bold tracking-tight text-soos-dark">

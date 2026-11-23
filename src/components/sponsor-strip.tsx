@@ -12,14 +12,14 @@ function Logos({ hidden = false }: { hidden?: boolean }) {
       {sponsors.map((sponsor) => (
         <li
           key={sponsor.name}
-          className="relative h-20 w-40 shrink-0 rounded-xl bg-white p-3 ring-1 ring-soos-dark/10"
+          className="group relative h-20 w-40 shrink-0 rounded-xl bg-white p-3 ring-1 ring-soos-dark/10"
         >
           <Image
             src={sponsor.logo}
             alt={hidden ? "" : sponsor.name}
             fill
             sizes="160px"
-            className="object-contain p-3"
+            className="object-contain p-3 opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none"
           />
         </li>
       ))}
