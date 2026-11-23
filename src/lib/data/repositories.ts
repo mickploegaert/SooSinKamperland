@@ -5,6 +5,8 @@ import type {
   FinancialTransaction,
   FinancialTransactionInput,
   Sponsor,
+  SumUpTransaction,
+  SumUpTransactionInput,
   SponsorInput,
   WebsiteContent, WebsiteContentInput, WebsitePage } from "./types";
 
@@ -48,10 +50,22 @@ export interface FinancialTransactionRepository
   listByType(type: FinancialTransaction["type"]): Promise<FinancialTransaction[]>;
 }
 
+export interface SumUpTransactionRepository {
+  /** Nieuwste eerst. */
+  list(): Promise<SumUpTransaction[]>;
+  findById(id: number): Promise<SumUpTransaction | null>;
+  /**
+   * Slaat opgehaalde transacties op. Bestaande transacties (zelfde externalId)
+   * worden bijgewerkt in plaats van dubbel toegevoegd.
+   */
+  upsertMany(items: SumUpTransactionInput[]): Promise<{ added: number; updated: number }>;
+}
+
 export interface Database {
   admins: AdminRepository;
   websiteContent: WebsiteContentRepository;
   activities: ActivityRepository;
   sponsors: SponsorRepository;
   transactions: FinancialTransactionRepository;
+  sumupTransactions: SumUpTransactionRepository;
 }

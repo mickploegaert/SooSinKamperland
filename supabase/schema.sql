@@ -102,3 +102,22 @@ alter table public.financiele_transactie enable row level security;
 -- Alleen beheerders mogen financiële gegevens zien of wijzigen.
 create policy "beheerders beheren financiën" on public.financiele_transactie
   for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
+
+-- ─── SumUp-transacties (US15, US16) ──────────────────────────────────────────
+create table if not exists public.sumup_transactie (
+  sumup_transactie_id     bigint generated always as identity primary key,
+  externe_transactie_id   varchar(255)  not null unique,
+  transactiecode          varchar(50),
+  bedrag                  decimal(10,2) not null,
+  valuta                  varchar(3)    not null,
+  transactiedatum         timestamptz   not null,
+  status                  varchar(50)   not null,
+  betaalwijze             varchar(30),
+  kaarttype               varchar(30),
+  omschrijving            text,
+  laatst_gesynchroniseerd timestamptz   not null default now()
+);
+
+alter table public.sumup_transactie enable row level security;
+create policy "beheerders lezen sumup-transacties" on public.sumup_transactie
+  for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());

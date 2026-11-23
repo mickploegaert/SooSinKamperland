@@ -2,7 +2,7 @@ import "server-only";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { hashPassword } from "@/lib/auth/password";
-import { HERO_SECTION, type Activity, type Admin, type FinancialTransaction, type Sponsor, type WebsiteContent } from "../types";
+import { HERO_SECTION, type Activity, type Admin, type FinancialTransaction, type Sponsor, type SumUpTransaction, type WebsiteContent } from "../types";
 
 /**
  * Eenvoudige JSON-opslag voor lokale ontwikkeling zolang Supabase nog niet
@@ -16,6 +16,7 @@ export type LocalSchema = {
   activities: Activity[];
   sponsors: Sponsor[];
   transactions: FinancialTransaction[];
+  sumupTransactions: SumUpTransaction[];
 };
 
 /** Voorbeeldactiviteiten uit de schermontwerpen. */
@@ -102,6 +103,7 @@ async function createSeed(): Promise<LocalSchema> {
     activities: seedActivities(),
     sponsors: seedSponsors(),
     transactions: [],
+    sumupTransactions: [],
   };
 }
 
