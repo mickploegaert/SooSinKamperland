@@ -6,6 +6,20 @@
   --color-soos-purple: #5315a5;
   --color-soos-ink: #292633;
   --color-soos-mist: #f4f0fa;
+
+  /* Kleuren uit de schermontwerpen (dashboard & inloggen). */
+  --color-soos-navy: #11112b;
+  --color-soos-violet: #4a23a0;
+  --color-soos-violet-hover: #3c1c84;
+  --color-soos-plum: #4e1e75;
+  --color-soos-lilac: #f0ecfa;
+  --color-soos-surface: #f8f7fc;
+  --color-soos-line: #e6e4ef;
+  --color-soos-muted: #6b6880;
+  --color-soos-income: #23945b;
+  --color-soos-income-soft: #e8f7f1;
+  --color-soos-expense: #dc3545;
+  --color-soos-expense-soft: #fceff1;
 }
 
 body {
@@ -19,6 +33,7 @@ body {
 }
 
 header :focus-visible,
-footer :focus-visible {
+footer :focus-visible,
+.focus-light :focus-visible {
   outline-color: #ffffff;
 }
