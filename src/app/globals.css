@@ -2,11 +2,18 @@
 
 @theme inline {
   --font-sans: var(--font-poppins), "Poppins", sans-serif;
-  --color-soos-dark: #260b45;
-  --color-soos-purple: #5315a5;
-  --color-soos-ink: #292633;
-  --color-soos-mist: #f4f0fa;
-  --color-soos-accent: #ffb703;
+  /* Kleurenthema Soos in Kamperland.
+     Merkkleur: paars. Warme accentkleur: geel (alleen voor kleine highlights). */
+  --color-soos-dark: #260b45; /* diepste paars: koppen, header, footer */
+  --color-soos-deep: #321259; /* kaarten op een donkere achtergrond */
+  --color-soos-purple: #5315a5; /* primaire knoppen, links */
+  --color-soos-purple-hover: #3f1080; /* hover van primaire knoppen */
+  --color-soos-glow: #8a4be0; /* zachte lichtvlekken in hero's */
+  --color-soos-mist: #f4f0fa; /* lichte paarse achtergrond */
+  --color-soos-ink: #292633; /* lopende tekst */
+  --color-soos-accent: #ffb703; /* warm geel: badge, onderlijn, iconen op donker */
+
+  --shadow-card-lift: 0 40px 80px -48px rgb(38 11 69 / 0.65);
 }
 
 @keyframes sponsor-scroll {
@@ -81,7 +88,7 @@ html {
 
 body {
   background: #ffffff;
-  color: #292633;
+  color: var(--color-soos-ink);
   line-height: 1.6;
 }
 
@@ -96,7 +103,7 @@ p {
 }
 
 :focus-visible {
-  outline: 2px solid #5315a5;
+  outline: 2px solid var(--color-soos-purple);
   outline-offset: 2px;
 }
 

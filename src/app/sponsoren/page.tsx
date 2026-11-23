@@ -130,7 +130,7 @@ export default function SponsorenPage() {
                     key={tier.name}
                     className={`rounded-2xl bg-gradient-to-br p-[1.5px] transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${tone.ring}`}
                   >
-                    <div className="flex h-full flex-col items-center rounded-[calc(1rem-1.5px)] bg-[#321259] px-5 py-7 text-center lg:flex-row lg:gap-5 lg:text-left xl:flex-col xl:text-center">
+                    <div className="flex h-full flex-col items-center rounded-[calc(1rem-1.5px)] bg-soos-deep px-5 py-7 text-center lg:flex-row lg:gap-5 lg:text-left xl:flex-col xl:text-center">
                       <span
                         aria-hidden
                         className={`flex size-14 shrink-0 items-center justify-center rounded-full shadow-inner ${tone.badge}`}

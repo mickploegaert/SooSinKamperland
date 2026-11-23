@@ -52,7 +52,7 @@ export default async function AgendaPage() {
               <a
                 href="/agenda.ics"
                 download
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-soos-purple px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-soos-purple/25 transition hover:bg-[#3f1080] active:scale-[0.98]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-soos-purple px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-soos-purple/25 transition hover:bg-soos-purple-hover active:scale-[0.98]"
               >
                 Download agenda (.ics)
               </a>

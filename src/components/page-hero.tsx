@@ -17,7 +17,7 @@ export function PageHero({
       />
       <div
         aria-hidden
-        className="absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-[#8a4be0]/30 blur-3xl"
+        className="absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-soos-glow/30 blur-3xl"
       />
       <div className="relative mx-auto max-w-6xl px-4 pb-28 pt-14 sm:pb-36 sm:pt-20">
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
@@ -44,7 +44,7 @@ export function PageCard({
   return (
     <section className="relative z-10 -mt-20 px-4 pb-20 sm:-mt-24 sm:pb-28">
       <div
-        className={`mx-auto max-w-6xl rounded-[2rem] bg-white px-5 py-10 shadow-[0_40px_80px_-48px_rgba(38,11,69,0.65)] ring-1 ring-soos-dark/5 sm:px-10 sm:py-14 ${className}`}
+        className={`mx-auto max-w-6xl rounded-[2rem] bg-white px-5 py-10 shadow-card-lift ring-1 ring-soos-dark/5 sm:px-10 sm:py-14 ${className}`}
       >
         {children}
       </div>

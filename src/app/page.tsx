@@ -50,7 +50,7 @@ export default async function Home() {
       </section>
 
       <section className="relative z-10 -mt-28 px-4 pb-16 sm:-mt-36 sm:pb-24">
-        <div className="mx-auto max-w-6xl rounded-[2rem] bg-white px-6 py-10 shadow-[0_40px_80px_-48px_rgba(38,11,69,0.65)] ring-1 ring-soos-dark/5 sm:px-12 sm:py-14">
+        <div className="mx-auto max-w-6xl rounded-[2rem] bg-white px-6 py-10 shadow-card-lift ring-1 ring-soos-dark/5 sm:px-12 sm:py-14">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-soos-dark sm:text-4xl">
