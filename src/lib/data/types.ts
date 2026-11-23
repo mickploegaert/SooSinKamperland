@@ -150,3 +150,33 @@ export type FinancialTransaction = {
 };
 
 export type FinancialTransactionInput = Omit<FinancialTransaction, "id">;
+
+export type SumUpStatus = "SUCCESSFUL" | "CANCELLED" | "FAILED" | "PENDING" | "REFUNDED" | string;
+
+/** Tabel `sumup_transactie` — kopie van transacties die uit SumUp zijn opgehaald. */
+export type SumUpTransaction = {
+  /** sumup_transactie_id */
+  id: number;
+  /** externe_transactie_id (UK) — het id van SumUp, voorkomt dubbele transacties */
+  externalId: string;
+  /** transaction_code van SumUp (staat op de bon) */
+  transactionCode: string | null;
+  /** bedrag in centen */
+  amountCents: number;
+  /** valuta */
+  currency: string;
+  /** transactiedatum (ISO-tijdstempel) */
+  timestamp: string;
+  /** status */
+  status: SumUpStatus;
+  /** betaalwijze (payment_type), bijv. POS of CASH */
+  paymentType: string | null;
+  /** kaarttype, bijv. VISA of MAESTRO */
+  cardType: string | null;
+  /** omschrijving (product_summary) */
+  description: string | null;
+  /** laatst_gesynchroniseerd */
+  syncedAt: string;
+};
+
+export type SumUpTransactionInput = Omit<SumUpTransaction, "id" | "syncedAt">;
