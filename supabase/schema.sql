@@ -43,3 +43,26 @@ create policy "iedereen leest website-inhoud" on public.website_inhoud
   for select using (true);
 create policy "beheerders beheren website-inhoud" on public.website_inhoud
   for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
+
+-- ─── Activiteiten (US09) ─────────────────────────────────────────────────────
+create table if not exists public.activiteit (
+  activiteit_id  bigint generated always as identity primary key,
+  naam           varchar(255) not null,
+  beschrijving   text         not null,
+  categorie      varchar(50),
+  startdatum     date         not null,
+  einddatum      date,
+  starttijd      time,
+  eindtijd       time,
+  locatie        varchar(255),
+  afbeelding_url varchar(255),
+  is_zichtbaar   boolean      not null default true,
+  beheerder_id   bigint references public.beheerder (beheerder_id) on delete set null,
+  check (einddatum is null or einddatum >= startdatum)
+);
+
+alter table public.activiteit enable row level security;
+create policy "iedereen leest zichtbare activiteiten" on public.activiteit
+  for select using (is_zichtbaar or public.is_beheerder());
+create policy "beheerders beheren activiteiten" on public.activiteit
+  for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
