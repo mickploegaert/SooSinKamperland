@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { mainNavigation } from "@/lib/navigation";
+import { SocialIcons } from "@/components/social-icons";
 
 export function SiteFooter() {
   return (
@@ -27,6 +28,7 @@ export function SiteFooter() {
             ))}
           </ul>
         </nav>
+        <SocialIcons />
       </div>
     </footer>
   );
