@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { connection } from "next/server";
+import { ActivityCard } from "@/components/activity-card";
+import { SponsorStrip } from "@/components/sponsor-strip";
+import { upcomingActivities } from "@/lib/activities";
 
 export const metadata: Metadata = {
   title: "Home",
 };
 
-export default function Home() {
+export default async function Home() {
+  await connection();
+  const soon = upcomingActivities().slice(0, 3);
+
   return (
     <div className="flex flex-1 flex-col bg-soos-mist">
       <section className="relative isolate min-h-[36rem] overflow-hidden bg-soos-dark text-white sm:min-h-[42rem]">
@@ -42,7 +49,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-10 -mt-28 flex-1 px-4 pb-20 sm:-mt-36 sm:pb-28">
+      <section className="relative z-10 -mt-28 px-4 pb-16 sm:-mt-36 sm:pb-24">
         <div className="mx-auto max-w-6xl rounded-[2rem] bg-white px-6 py-10 shadow-[0_40px_80px_-48px_rgba(38,11,69,0.65)] ring-1 ring-soos-dark/5 sm:px-12 sm:py-14">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
             <div>
@@ -75,6 +82,66 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {soon.length > 0 ? (
+        <section aria-labelledby="binnenkort-titel" className="px-4 pb-16 sm:pb-24">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2
+                  id="binnenkort-titel"
+                  className="text-3xl font-bold tracking-tight text-soos-dark sm:text-4xl"
+                >
+                  Binnenkort in de soos
+                </h2>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-soos-purple">
+                  De eerstvolgende activiteiten
+                </p>
+              </div>
+              <Link
+                href="/activiteiten"
+                className="text-sm font-semibold text-soos-dark underline decoration-soos-purple/40 underline-offset-4 hover:decoration-soos-purple"
+              >
+                Alle activiteiten <span aria-hidden>→</span>
+              </Link>
+            </div>
+            <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {soon.map((activity) => (
+                <li key={`${activity.date}-${activity.name}`}>
+                  <ActivityCard activity={activity} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ) : null}
+
+      <div className="pb-16 sm:pb-24">
+        <SponsorStrip />
+      </div>
+
+      <section className="px-4 pb-20 sm:pb-28">
+        <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 overflow-hidden rounded-[2rem] bg-soos-dark px-6 py-12 text-white sm:flex-row sm:items-center sm:justify-between sm:px-12 sm:py-14">
+          <div
+            aria-hidden
+            className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-soos-purple/50 blur-3xl"
+          />
+          <div className="relative max-w-xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Word een vriend van de soos
+            </h2>
+            <p className="mt-3 text-base leading-7 text-white/85">
+              Steun onze activiteiten en hang jouw logo op de Wall of Fame. En mis niks.
+            </p>
+          </div>
+          <Link
+            href="/sponsoren#vrienden"
+            className="relative inline-flex shrink-0 rounded-full bg-white px-6 py-3 text-sm font-semibold text-soos-dark shadow-lg shadow-black/20 transition hover:bg-soos-mist"
+          >
+            Bekijk de mogelijkheden
+          </Link>
         </div>
       </section>
     </div>

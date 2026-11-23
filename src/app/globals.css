@@ -8,6 +8,22 @@
   --color-soos-mist: #f4f0fa;
 }
 
+@keyframes sponsor-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background: #ffffff;
   color: #292633;

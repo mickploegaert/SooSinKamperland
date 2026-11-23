@@ -68,6 +68,33 @@ export function formatActivityDate(isoDate: string) {
   }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
+export function formatDayMonth(isoDate: string) {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return {
+    day: String(day),
+    month: new Intl.DateTimeFormat("nl-NL", { month: "short", timeZone: "UTC" })
+      .format(date)
+      .replace(".", ""),
+  };
+}
+
+export function formatMonthYear(isoDate: string) {
+  const [year, month] = isoDate.split("-").map(Number);
+  return new Intl.DateTimeFormat("nl-NL", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, 1)));
+}
+
+export function formatWeekday(isoDate: string) {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  return new Intl.DateTimeFormat("nl-NL", { weekday: "long", timeZone: "UTC" }).format(
+    new Date(Date.UTC(year, month - 1, day)),
+  );
+}
+
 export function upcomingActivities(today = new Date()) {
   const todayUtc = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
 

@@ -1,0 +1,53 @@
+import type { ReactNode } from "react";
+
+export function PageHero({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: ReactNode;
+}) {
+  return (
+    <section className="relative isolate overflow-hidden bg-soos-dark text-white">
+      <div
+        aria-hidden
+        className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-soos-purple/50 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="absolute -bottom-32 left-1/4 h-80 w-80 rounded-full bg-[#8a4be0]/30 blur-3xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-4 pb-28 pt-14 sm:pb-36 sm:pt-20">
+        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
+          {eyebrow}
+        </p>
+        <h1 className="mt-4 max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl sm:leading-[1.05]">
+          {title}
+        </h1>
+        {children ? (
+          <p className="mt-5 max-w-xl text-base leading-7 text-white/85 sm:text-lg">{children}</p>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+export function PageCard({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className="relative z-10 -mt-20 px-4 pb-20 sm:-mt-24 sm:pb-28">
+      <div
+        className={`mx-auto max-w-6xl rounded-[2rem] bg-white px-5 py-10 shadow-[0_40px_80px_-48px_rgba(38,11,69,0.65)] ring-1 ring-soos-dark/5 sm:px-10 sm:py-14 ${className}`}
+      >
+        {children}
+      </div>
+    </section>
+  );
+}

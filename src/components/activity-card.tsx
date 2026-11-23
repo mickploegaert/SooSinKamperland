@@ -1,0 +1,74 @@
+import Image from "next/image";
+import {
+  formatActivityDate,
+  formatDayMonth,
+  formatWeekday,
+  type Activity,
+} from "@/lib/activities";
+
+function DateBadge({ date }: { date: string }) {
+  const { day, month } = formatDayMonth(date);
+  return (
+    <div className="flex size-16 flex-col items-center justify-center rounded-2xl bg-white text-center shadow-lg">
+      <span className="text-2xl font-bold leading-none text-soos-dark">{day}</span>
+      <span className="mt-1 text-xs font-semibold uppercase tracking-wider text-soos-purple">
+        {month}
+      </span>
+    </div>
+  );
+}
+
+export function ActivityCard({
+  activity,
+  featured = false,
+}: {
+  activity: Activity;
+  featured?: boolean;
+}) {
+  return (
+    <article
+      className={`group overflow-hidden rounded-2xl bg-white ring-1 ring-soos-dark/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-24px_rgba(83,21,165,0.45)] hover:ring-soos-purple/40 ${
+        featured ? "grid lg:grid-cols-2" : "flex h-full flex-col"
+      }`}
+    >
+      <div className={`relative ${featured ? "min-h-64 lg:min-h-96" : "aspect-[4/3]"}`}>
+        <Image
+          src={activity.image}
+          alt={activity.imageAlt}
+          fill
+          sizes={
+            featured
+              ? "(min-width: 1024px) 560px, 100vw"
+              : "(min-width: 1024px) 384px, (min-width: 640px) 50vw, 100vw"
+          }
+          className="object-cover transition duration-500 group-hover:scale-105"
+        />
+        <div className="absolute left-4 top-4">
+          <DateBadge date={activity.date} />
+        </div>
+        {featured ? (
+          <span className="absolute bottom-4 left-4 rounded-full bg-soos-purple px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+            Eerstvolgende
+          </span>
+        ) : null}
+      </div>
+      <div className={`flex flex-col justify-center ${featured ? "p-6 sm:p-10" : "flex-1 p-5"}`}>
+        <p className="text-sm font-semibold capitalize text-soos-purple">
+          <time dateTime={activity.date}>
+            {formatWeekday(activity.date)} {formatActivityDate(activity.date)}
+          </time>
+        </p>
+        <h3
+          className={`mt-2 font-semibold text-soos-dark ${featured ? "text-3xl sm:text-4xl" : "text-xl"}`}
+        >
+          {activity.name}
+        </h3>
+        <p
+          className={`mt-3 leading-7 text-soos-ink/85 ${featured ? "text-base sm:text-lg" : "text-sm"}`}
+        >
+          {activity.description}
+        </p>
+      </div>
+    </article>
+  );
+}

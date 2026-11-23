@@ -22,6 +22,12 @@ export function MainNav() {
             {item.label}
           </Link>
         ))}
+        <Link
+          href="/sponsoren#vrienden"
+          className="ml-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-soos-dark shadow transition hover:bg-soos-mist"
+        >
+          Word sponsor
+        </Link>
       </nav>
 
       <div className="lg:hidden">
@@ -53,6 +59,15 @@ export function MainNav() {
                   </Link>
                 </li>
               ))}
+              <li className="pt-2">
+                <Link
+                  href="/sponsoren#vrienden"
+                  className="block rounded-full bg-white px-4 py-3 text-center text-base font-semibold text-soos-dark"
+                  onClick={() => setOpen(false)}
+                >
+                  Word sponsor
+                </Link>
+              </li>
             </ul>
           </nav>
         ) : null}

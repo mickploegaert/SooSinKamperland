@@ -118,8 +118,9 @@ export default function SponsorenPage() {
       </section>
 
       <section
+        id="vrienden"
         aria-labelledby="vrienden-titel"
-        className="px-4 pb-20 pt-16 sm:pb-28 sm:pt-24"
+        className="scroll-mt-20 px-4 pb-20 pt-16 sm:pb-28 sm:pt-24"
       >
         <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-soos-dark px-6 py-12 text-white sm:px-12 sm:py-16">
           <div
