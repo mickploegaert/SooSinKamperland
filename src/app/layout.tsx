@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Ga naar de inhoud
         </a>
         <SiteHeader />
-        <main id="inhoud" className="flex-1">
+        <main id="inhoud" className="flex flex-1 flex-col">
           {children}
         </main>
         <SiteFooter />
