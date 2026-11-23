@@ -5,6 +5,6 @@ export type SocialLink = {
 };
 
 export const socialLinks: SocialLink[] = [
-  { name: "Facebook", href: "" },
-  { name: "Instagram", href: "" },
+  { name: "Facebook", href: "https://www.facebook.com/Soosactiviteiten/" },
+  { name: "Instagram", href: "https://www.instagram.com/soos_in_kamperland/" },
 ];
