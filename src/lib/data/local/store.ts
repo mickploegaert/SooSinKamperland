@@ -2,7 +2,7 @@ import "server-only";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { hashPassword } from "@/lib/auth/password";
-import { HERO_SECTION, type Activity, type Admin, type WebsiteContent } from "../types";
+import { HERO_SECTION, type Activity, type Admin, type Sponsor, type WebsiteContent } from "../types";
 
 /**
  * Eenvoudige JSON-opslag voor lokale ontwikkeling zolang Supabase nog niet
@@ -14,6 +14,7 @@ export type LocalSchema = {
   admins: Admin[];
   websiteContent: WebsiteContent[];
   activities: Activity[];
+  sponsors: Sponsor[];
 };
 
 /** Voorbeeldactiviteiten uit de schermontwerpen. */
@@ -32,6 +33,28 @@ function seedActivities(): Activity[] {
       description: "Een gezellige filmavond op groot scherm, met popcorn erbij." },
     { ...base, id: 6, name: "Themafeest", category: "Feest", startDate: "2027-02-06", startTime: "21:00", endTime: "01:00",
       description: "Kom verkleed volgens het thema van de avond en maak kans op een prijs voor de beste outfit." },
+  ];
+}
+
+/** De sponsoren die nu op de website staan (logo's in public/sponsoren). */
+function seedSponsors(): Sponsor[] {
+  const base = { websiteUrl: null, level: null, isFriend: false, updatedBy: 1 };
+  return [
+    { ...base, id: 1, sortOrder: 1, name: "AH & Etos Kamperland", logoUrl: "/sponsoren/ah-etos-kamperland.png", description: "Supermarkt en drogist in Kamperland." },
+    { ...base, id: 2, sortOrder: 2, name: "Installatiebedrijf Zuid", logoUrl: "/sponsoren/installatiebedrijf-zuid.jpeg", description: "Installatiebedrijf IBZ b.v." },
+    { ...base, id: 3, sortOrder: 3, name: "Suukeruusje", logoUrl: "/sponsoren/suukeruusje.png", description: "Toarte om van te (tr)ouwe." },
+    { ...base, id: 4, sortOrder: 4, name: "Schildersbedrijf Jongejan", logoUrl: "/sponsoren/schildersbedrijf-jongejan.png", description: "Schildersbedrijf in Kamperland en omgeving." },
+    { ...base, id: 5, sortOrder: 5, name: "Eriks Optiek", logoUrl: "/sponsoren/eriks-optiek.png", description: "Brillen en lenzen." },
+    { ...base, id: 6, sortOrder: 6, name: "De Visserie", logoUrl: "/sponsoren/de-visserie.jpeg", description: "Verse vis." },
+    { ...base, id: 7, sortOrder: 7, name: "TA Makelaardij", logoUrl: "/sponsoren/ta-makelaardij.jpeg", description: "Makelaardij." },
+    { ...base, id: 8, sortOrder: 8, name: "Novelty", logoUrl: "/sponsoren/novelty.png", description: "Skin & health." },
+    { ...base, id: 9, sortOrder: 9, name: "Zilt Beauty", logoUrl: "/sponsoren/zilt-beauty.png", description: "Beauty | Kamperland." },
+    { ...base, id: 10, sortOrder: 10, name: "Meulenberg Woon-ID", logoUrl: "/sponsoren/meulenberg-woon-id.jpg", description: "Vloeren, raamdecoratie en woonaccessoires." },
+    { ...base, id: 11, sortOrder: 11, name: "Tino van Leeuwen", logoUrl: "/sponsoren/tino-van-leeuwen.jpeg", description: "Vloerbedekking." },
+    { ...base, id: 12, sortOrder: 12, name: "Jacare", logoUrl: "/sponsoren/jacare.png", description: "We care for you." },
+    { ...base, id: 13, sortOrder: 13, name: "Bouwcenter De Haze", logoUrl: "/sponsoren/bouwcenter-de-haze.jpg", description: "Bouwmaterialen en doe-het-zelf." },
+    { ...base, id: 14, sortOrder: 14, name: "De Fietsloods", logoUrl: "/sponsoren/de-fietsloods.png", description: "Fietsen." },
+    { ...base, id: 15, sortOrder: 15, name: "Kwalitaria", logoUrl: "/sponsoren/kwalitaria.jpg", description: "Natuurlijk de lekkerste." },
   ];
 }
 
@@ -76,6 +99,7 @@ async function createSeed(): Promise<LocalSchema> {
       },
     ],
     activities: seedActivities(),
+    sponsors: seedSponsors(),
   };
 }
 

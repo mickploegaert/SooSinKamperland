@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { friendTiers, sponsors, type FriendTier } from "@/lib/sponsors";
+import { connection } from "next/server";
+import { ContentSections } from "@/components/content-sections";
+import { getDatabase } from "@/lib/data";
+import type { Sponsor } from "@/lib/data/types";
+import { getPageContent } from "@/lib/public-content";
+import { friendTiers, type FriendTier } from "@/lib/sponsors";
 
 export const metadata: Metadata = {
   title: "Sponsoren",
@@ -28,7 +32,39 @@ const toneStyles: Record<FriendTier["tone"], { ring: string; badge: string; pric
   },
 };
 
-export default function SponsorenPage() {
+async function loadSponsors(): Promise<Sponsor[] | null> {
+  await connection();
+  try {
+    return await getDatabase().sponsors.list();
+  } catch (error) {
+    console.error("Sponsoren konden niet worden geladen", error);
+    return null;
+  }
+}
+
+function SponsorLogo({ sponsor }: { sponsor: Sponsor }) {
+  if (!sponsor.logoUrl) {
+    return (
+      <span className="text-center text-xl font-bold text-soos-dark/70">{sponsor.name}</span>
+    );
+  }
+  return (
+    // Logo's kunnen ook externe URL's zijn die beheerders invullen, daarom geen next/image.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={sponsor.logoUrl}
+      alt={`Logo van ${sponsor.name}`}
+      loading="lazy"
+      className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+    />
+  );
+}
+
+export default async function SponsorenPage() {
+  const [all, content] = await Promise.all([loadSponsors(), getPageContent("sponsoren")]);
+  const sponsors = (all ?? []).filter((sponsor) => !sponsor.isFriend);
+  const friends = (all ?? []).filter((sponsor) => sponsor.isFriend);
+
   return (
     <div className="bg-soos-mist">
       <section className="relative isolate overflow-hidden bg-soos-dark text-white">
@@ -69,27 +105,30 @@ export default function SponsorenPage() {
                 Sponsoren
               </h2>
               <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-soos-purple">
-                {sponsors.length} bedrijven steunen de soos
+                {sponsors.length === 1
+                  ? "1 bedrijf steunt de soos"
+                  : `${sponsors.length} bedrijven steunen de soos`}
               </p>
             </div>
           </div>
 
+          {all === null ? (
+            <p className="mt-10 rounded-xl bg-soos-mist px-6 py-8 text-soos-dark">
+              De sponsoren kunnen op dit moment niet worden geladen. Probeer het later opnieuw.
+            </p>
+          ) : sponsors.length === 0 ? (
+            <p className="mt-10 rounded-xl bg-soos-mist px-6 py-8 text-soos-dark">
+              Binnenkort maken we hier onze sponsoren bekend.
+            </p>
+          ) : (
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {sponsors.map((sponsor) => (
               <li
-                key={sponsor.name}
+                key={sponsor.id}
                 className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-soos-dark/10 transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_40px_-24px_rgba(83,21,165,0.45)] hover:ring-soos-purple/40"
               >
                 <div className="relative flex h-48 items-center justify-center bg-gradient-to-b from-white to-soos-mist p-6">
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={sponsor.logo}
-                      alt={`Logo van ${sponsor.name}`}
-                      fill
-                      sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 90vw"
-                      className="object-contain transition duration-300 group-hover:scale-105"
-                    />
-                  </div>
+                  <SponsorLogo sponsor={sponsor} />
                 </div>
                 <div className="flex flex-1 flex-col border-t border-soos-dark/5 p-5">
                   <h3 className="text-lg font-semibold text-soos-dark">{sponsor.name}</h3>
@@ -98,9 +137,9 @@ export default function SponsorenPage() {
                       {sponsor.description}
                     </p>
                   ) : null}
-                  {sponsor.website ? (
+                  {sponsor.websiteUrl ? (
                     <a
-                      href={sponsor.website}
+                      href={sponsor.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-4 inline-flex items-center gap-2 self-start text-sm font-semibold text-soos-purple underline decoration-soos-purple/30 underline-offset-4 transition hover:decoration-soos-purple"
@@ -114,6 +153,7 @@ export default function SponsorenPage() {
               </li>
             ))}
           </ul>
+          )}
         </div>
       </section>
 
@@ -180,8 +220,26 @@ export default function SponsorenPage() {
               })}
             </ul>
           </div>
+
+          {friends.length > 0 ? (
+            <div className="relative mt-12 border-t border-white/15 pt-10">
+              <h3 className="text-xl font-semibold">Onze vrienden</h3>
+              <ul className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                {friends.map((friend) => (
+                  <li
+                    key={friend.id}
+                    className="group flex h-28 items-center justify-center rounded-2xl bg-white p-4"
+                  >
+                    <SponsorLogo sponsor={friend} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </section>
+
+      <ContentSections items={content} />
     </div>
   );
 }
