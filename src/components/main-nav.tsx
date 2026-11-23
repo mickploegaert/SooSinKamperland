@@ -22,29 +22,28 @@ export function MainNav() {
 
   return (
     <>
-      <div className="hidden items-center gap-2 lg:flex">
-        <nav aria-label="Hoofdmenu" className="flex items-center gap-1">
+      <div className="hidden items-center gap-2 xl:flex">
+        <nav
+          aria-label="Hoofdmenu"
+          className="flex items-center gap-1 rounded-full bg-white/5 p-1 ring-1 ring-white/10"
+        >
           {mainNavigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isCurrentPage(pathname, item.href) ? "page" : undefined}
-              className="group relative rounded-full px-3 py-2 text-sm font-semibold text-white/80 transition hover:text-white aria-[current=page]:text-white"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white aria-[current=page]:bg-white aria-[current=page]:text-soos-dark aria-[current=page]:shadow-sm motion-reduce:transition-none"
             >
               {item.label}
-              <span
-                aria-hidden
-                className="absolute inset-x-3 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full bg-soos-accent transition-transform duration-300 group-hover:scale-x-100 group-aria-[current=page]:scale-x-100 motion-reduce:transition-none"
-              />
             </Link>
           ))}
         </nav>
-        <ButtonLink href="/sponsoren#vrienden" variant="light" size="sm" className="ml-2">
+        <ButtonLink href="/sponsoren#vrienden" variant="glow" size="sm" className="ml-2" arrow>
           Word sponsor
         </ButtonLink>
       </div>
 
-      <div className="lg:hidden">
+      <div className="xl:hidden">
         <button
           type="button"
           className="flex size-11 items-center justify-center rounded-full ring-1 ring-inset ring-white/30 transition hover:bg-white/10"
@@ -67,7 +66,7 @@ export function MainNav() {
                   <Link
                     href={item.href}
                     aria-current={isCurrentPage(pathname, item.href) ? "page" : undefined}
-                    className="block rounded-xl px-4 py-3 text-base font-semibold text-white/85 transition hover:bg-white/10 aria-[current=page]:bg-white/10 aria-[current=page]:text-white aria-[current=page]:shadow-[inset_3px_0_0_var(--color-soos-accent)]"
+                    className="block rounded-xl px-4 py-3 text-base font-semibold text-white/85 transition hover:bg-white/10 aria-[current=page]:bg-white aria-[current=page]:text-soos-dark"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
@@ -77,7 +76,7 @@ export function MainNav() {
               <li className="pt-3">
                 <ButtonLink
                   href="/sponsoren#vrienden"
-                  variant="light"
+                  variant="glow"
                   className="w-full"
                   onClick={() => setOpen(false)}
                 >

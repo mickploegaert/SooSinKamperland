@@ -1,4 +1,4 @@
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, CalendarPlus } from "lucide-react";
 import Image from "next/image";
 import { ButtonLink } from "@/components/button";
 import {
@@ -72,7 +72,7 @@ export function ActivityCard({
         >
           {activity.description}
         </p>
-        <div className="mt-auto pt-5">
+        <div className="mt-auto flex items-center gap-2 pt-5">
           <ButtonLink
             href={`/aanmelden?activiteit=${activitySlug(activity)}`}
             variant="secondary"
@@ -82,6 +82,14 @@ export function ActivityCard({
             Aanmelden
             <span className="sr-only"> voor {activity.name}</span>
           </ButtonLink>
+          <a
+            href={`/agenda.ics?activiteit=${activitySlug(activity)}`}
+            download
+            className="flex size-11 items-center justify-center rounded-full text-soos-purple ring-1 ring-inset ring-soos-dark/15 transition hover:bg-soos-mist hover:ring-soos-purple/40"
+          >
+            <CalendarPlus aria-hidden className="size-5" />
+            <span className="sr-only">Zet {activity.name} in je agenda</span>
+          </a>
         </div>
       </div>
     </article>

@@ -2,11 +2,11 @@ import { ArrowRight, ExternalLink, LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "light" | "ghost";
+type Variant = "primary" | "secondary" | "light" | "ghost" | "glow";
 type Size = "md" | "sm";
 
 const base =
-  "group/btn inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 motion-reduce:transition-none motion-reduce:active:scale-100";
+  "group/btn inline-flex min-h-11 items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition duration-200 focus-visible:outline-offset-4 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 motion-reduce:transition-none motion-reduce:active:scale-100";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -15,6 +15,7 @@ const variants: Record<Variant, string> = {
     "bg-white text-soos-dark ring-1 ring-inset ring-soos-dark/15 hover:bg-soos-mist hover:ring-soos-purple/40",
   light: "bg-white text-soos-dark shadow-lg shadow-black/20 hover:bg-soos-mist",
   ghost: "text-white ring-1 ring-inset ring-white/30 hover:bg-white/10",
+  glow: "bg-soos-glow text-white shadow-lg shadow-black/25 hover:bg-[#9a63e8]",
 };
 
 const sizes: Record<Size, string> = {

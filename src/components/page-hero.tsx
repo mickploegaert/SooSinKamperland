@@ -24,7 +24,6 @@ export function PageHero({
           {eyebrow}
         </p>
         <h1 className="mt-4 max-w-2xl text-hero font-bold tracking-tight">{title}</h1>
-        <div aria-hidden className="mt-5 h-1.5 w-16 rounded-full bg-soos-accent" />
         {children ? (
           <p className="mt-5 max-w-xl text-base leading-7 text-white/85 sm:text-lg">{children}</p>
         ) : null}

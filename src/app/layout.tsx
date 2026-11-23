@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Fredoka, Poppins } from "next/font/google";
-import { BackToTop } from "@/components/back-to-top";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
@@ -54,7 +53,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
-        <BackToTop />
       </body>
     </html>
   );
