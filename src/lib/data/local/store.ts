@@ -2,7 +2,7 @@ import "server-only";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { hashPassword } from "@/lib/auth/password";
-import type { Admin } from "../types";
+import { HERO_SECTION, type Admin, type WebsiteContent } from "../types";
 
 /**
  * Eenvoudige JSON-opslag voor lokale ontwikkeling zolang Supabase nog niet
@@ -12,6 +12,7 @@ import type { Admin } from "../types";
 
 export type LocalSchema = {
   admins: Admin[];
+  websiteContent: WebsiteContent[];
 };
 
 export const DATA_DIR = path.join(process.cwd(), ".data");
@@ -30,6 +31,28 @@ async function createSeed(): Promise<LocalSchema> {
         ),
         role: "hoofdbeheerder",
         createdAt: now,
+      },
+    ],
+    websiteContent: [
+      {
+        id: 1,
+        page: "home",
+        section: HERO_SECTION,
+        title: "Welkom bij Soos in Kamperland",
+        body: "Dé plek voor jong en oud in Kamperland. Bekijk onze activiteiten, zalen en meer!",
+        imageUrl: null,
+        updatedAt: now,
+        updatedBy: 1,
+      },
+      {
+        id: 2,
+        page: "contact",
+        section: "contactgegevens",
+        title: "Neem contact met ons op",
+        body: "Heb je een vraag over een activiteit of wil je een zaal huren? Neem gerust contact met ons op, we helpen je graag verder.",
+        imageUrl: null,
+        updatedAt: now,
+        updatedBy: 1,
       },
     ],
   };

@@ -24,3 +24,22 @@ create or replace function public.is_beheerder() returns boolean
 language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.beheerder where auth_user_id = auth.uid());
 $$;
+
+-- ─── Website-inhoud (US08) ───────────────────────────────────────────────────
+create table if not exists public.website_inhoud (
+  inhoud_id         bigint generated always as identity primary key,
+  paginanaam        varchar(100) not null,
+  sectie            varchar(100) not null,
+  titel             varchar(255) not null,
+  inhoudstekst      text         not null,
+  afbeelding_url    varchar(255),
+  laatste_wijziging timestamptz  not null default now(),
+  beheerder_id      bigint references public.beheerder (beheerder_id) on delete set null,
+  unique (paginanaam, sectie)
+);
+
+alter table public.website_inhoud enable row level security;
+create policy "iedereen leest website-inhoud" on public.website_inhoud
+  for select using (true);
+create policy "beheerders beheren website-inhoud" on public.website_inhoud
+  for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());

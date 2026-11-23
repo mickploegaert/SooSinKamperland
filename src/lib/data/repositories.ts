@@ -1,4 +1,4 @@
-import type { Admin } from "./types";
+import type { Admin, WebsiteContent, WebsiteContentInput, WebsitePage } from "./types";
 
 /**
  * Contracten voor de gegevensopslag. De pagina's en server actions praten
@@ -12,6 +12,22 @@ export interface AdminRepository {
   findByIdentifier(identifier: string): Promise<Admin | null>;
 }
 
+/** Standaard bewerkingen die iedere beheerbare tabel ondersteunt. */
+export interface CrudRepository<T, TInput> {
+  list(): Promise<T[]>;
+  findById(id: number): Promise<T | null>;
+  create(input: TInput): Promise<T>;
+  update(id: number, input: TInput): Promise<T | null>;
+  delete(id: number): Promise<boolean>;
+}
+
+export interface WebsiteContentRepository
+  extends CrudRepository<WebsiteContent, WebsiteContentInput> {
+  listByPage(page: WebsitePage): Promise<WebsiteContent[]>;
+  findBySection(page: WebsitePage, section: string): Promise<WebsiteContent | null>;
+}
+
 export interface Database {
   admins: AdminRepository;
+  websiteContent: WebsiteContentRepository;
 }

@@ -15,7 +15,7 @@ export default async function DashboardLayout({ children }: LayoutProps<"/dashbo
     <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-3 p-3 sm:p-4">
       <DashboardTopbar admin={admin} />
       <div className="flex flex-1 flex-col gap-4 lg:flex-row">
-        <aside className="lg:w-44 lg:shrink-0">
+        <aside className="lg:flex lg:w-44 lg:shrink-0 lg:flex-col">
           <DashboardSidebar />
         </aside>
         <main id="inhoud" className="min-w-0 flex-1 py-1 lg:py-2">
