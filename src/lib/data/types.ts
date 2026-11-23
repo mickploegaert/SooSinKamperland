@@ -60,3 +60,33 @@ export type WebsiteContent = {
 };
 
 export type WebsiteContentInput = Omit<WebsiteContent, "id" | "updatedAt">;
+
+/** Tabel `activiteit` */
+export type Activity = {
+  /** activiteit_id */
+  id: number;
+  /** naam */
+  name: string;
+  /** beschrijving */
+  description: string;
+  /** categorie (voor het filter op de activiteitenpagina) */
+  category: string | null;
+  /** startdatum, JJJJ-MM-DD */
+  startDate: string;
+  /** einddatum, JJJJ-MM-DD (optioneel, voor meerdaagse activiteiten) */
+  endDate: string | null;
+  /** starttijd, UU:MM */
+  startTime: string | null;
+  /** eindtijd, UU:MM */
+  endTime: string | null;
+  /** locatie */
+  location: string | null;
+  /** afbeelding_url */
+  imageUrl: string | null;
+  /** is_zichtbaar */
+  isVisible: boolean;
+  /** beheerder_id (FK) */
+  updatedBy: number;
+};
+
+export type ActivityInput = Omit<Activity, "id">;

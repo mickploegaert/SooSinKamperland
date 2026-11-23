@@ -1,4 +1,8 @@
-import type { Admin, WebsiteContent, WebsiteContentInput, WebsitePage } from "./types";
+import type {
+  Activity,
+  ActivityInput,
+  Admin,
+  WebsiteContent, WebsiteContentInput, WebsitePage } from "./types";
 
 /**
  * Contracten voor de gegevensopslag. De pagina's en server actions praten
@@ -27,7 +31,13 @@ export interface WebsiteContentRepository
   findBySection(page: WebsitePage, section: string): Promise<WebsiteContent | null>;
 }
 
+export interface ActivityRepository extends CrudRepository<Activity, ActivityInput> {
+  /** Zichtbare activiteiten die vandaag of later plaatsvinden, oplopend op datum. */
+  listUpcoming(today: string): Promise<Activity[]>;
+}
+
 export interface Database {
   admins: AdminRepository;
   websiteContent: WebsiteContentRepository;
+  activities: ActivityRepository;
 }
