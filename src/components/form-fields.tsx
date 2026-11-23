@@ -46,7 +46,7 @@ export function SuccessMessage({ title, message }: { title: string; message?: st
   return (
     <div
       role="status"
-      className="flex h-full flex-col items-center justify-center rounded-2xl bg-soos-mist px-6 py-14 text-center"
+      className="flex h-full flex-col items-center justify-center rounded-card bg-soos-mist px-6 py-14 text-center"
     >
       <h2 className="text-2xl font-bold text-soos-dark">{title}</h2>
       {message ? <p className="mt-2 max-w-sm text-base text-soos-ink/85">{message}</p> : null}

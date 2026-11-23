@@ -96,7 +96,7 @@ export default function SponsorenPage() {
         aria-labelledby="vrienden-titel"
         className="scroll-mt-20 px-4 pb-20 sm:pb-28"
       >
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-soos-dark px-6 py-12 text-white sm:px-12 sm:py-16">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-panel bg-soos-dark px-6 py-12 text-white sm:px-12 sm:py-16">
           <div
             aria-hidden
             className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-soos-purple/40 blur-3xl"
@@ -128,7 +128,7 @@ export default function SponsorenPage() {
                 return (
                   <li
                     key={tier.name}
-                    className={`rounded-2xl bg-gradient-to-br p-[1.5px] transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${tone.ring}`}
+                    className={`rounded-card bg-gradient-to-br p-[1.5px] transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${tone.ring}`}
                   >
                     <div className="flex h-full flex-col items-center rounded-[calc(1rem-1.5px)] bg-soos-deep px-5 py-7 text-center lg:flex-row lg:gap-5 lg:text-left xl:flex-col xl:text-center">
                       <span

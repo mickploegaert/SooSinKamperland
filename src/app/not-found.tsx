@@ -12,7 +12,7 @@ export default function NotFound() {
         op weg.
       </PageHero>
       <section className="relative z-10 -mt-16 px-4 pb-20">
-        <div className="mx-auto flex max-w-6xl flex-wrap gap-3 rounded-[2rem] bg-white p-6 shadow-card-lift ring-1 ring-soos-dark/5 sm:p-10">
+        <div className="mx-auto flex max-w-6xl flex-wrap gap-3 rounded-panel bg-white p-6 shadow-card-lift ring-1 ring-soos-dark/5 sm:p-10">
           <ButtonLink href="/" arrow>
             Naar de homepage
           </ButtonLink>

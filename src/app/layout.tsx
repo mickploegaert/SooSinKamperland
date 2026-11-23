@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Fredoka, Poppins } from "next/font/google";
+import { BackToTop } from "@/components/back-to-top";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
+
+const fredoka = Fredoka({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
+  variable: "--font-fredoka",
+});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,7 +41,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="nl" className={`${poppins.variable} h-full`}>
+    <html lang="nl" className={`${poppins.variable} ${fredoka.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-white font-sans text-soos-ink antialiased">
         <a
           href="#inhoud"
@@ -47,6 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <BackToTop />
       </body>
     </html>
   );

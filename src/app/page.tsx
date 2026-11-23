@@ -33,16 +33,19 @@ export default async function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/75">
               Soos in Kamperland
             </p>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-6xl sm:leading-[1.05]">
+            <h1 className="mt-4 text-hero font-bold tracking-tight">
               Welkom bij Soos in Kamperland
             </h1>
             <p className="mt-5 max-w-md text-base leading-7 text-white/90 sm:text-lg">
               Dé plek voor jong en oud in Kamperland. Bekijk onze activiteiten
               en meer!
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/activiteiten" arrow>
                 Bekijk activiteiten
+              </ButtonLink>
+              <ButtonLink href="/sponsoren#vrienden" variant="ghost">
+                Word sponsor
               </ButtonLink>
             </div>
           </div>
@@ -50,7 +53,7 @@ export default async function Home() {
       </section>
 
       <section className="relative z-10 -mt-28 px-4 pb-16 sm:-mt-36 sm:pb-24">
-        <div className="mx-auto max-w-6xl rounded-[2rem] bg-white px-6 py-10 shadow-card-lift ring-1 ring-soos-dark/5 sm:px-12 sm:py-14">
+        <div className="mx-auto max-w-6xl rounded-panel bg-white px-6 py-10 shadow-card-lift ring-1 ring-soos-dark/5 sm:px-12 sm:py-14">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-soos-dark sm:text-4xl">
@@ -101,12 +104,12 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <div className="pb-16 sm:pb-24">
+      <div className="mb-16 bg-soos-cream py-16 sm:mb-24 sm:py-20">
         <SponsorStrip />
       </div>
 
       <section className="px-4 pb-20 sm:pb-28">
-        <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 overflow-hidden rounded-[2rem] bg-soos-dark px-6 py-12 text-white sm:flex-row sm:items-center sm:justify-between sm:px-12 sm:py-14">
+        <div className="relative mx-auto flex max-w-6xl flex-col items-start gap-6 overflow-hidden rounded-panel bg-soos-dark px-6 py-12 text-white sm:flex-row sm:items-center sm:justify-between sm:px-12 sm:py-14">
           <div
             aria-hidden
             className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-soos-purple/50 blur-3xl"

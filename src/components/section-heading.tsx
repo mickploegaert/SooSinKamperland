@@ -28,7 +28,7 @@ export function SectionHeading({
         ) : null}
         <h2
           id={id}
-          className={`mt-2 text-3xl font-bold tracking-tight sm:text-4xl ${
+          className={`mt-2 text-section font-bold tracking-tight ${
             light ? "text-white" : "text-soos-dark"
           }`}
         >

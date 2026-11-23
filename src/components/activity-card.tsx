@@ -12,7 +12,7 @@ import {
 function DateBadge({ date }: { date: string }) {
   const { day, month } = formatDayMonth(date);
   return (
-    <div className="flex size-16 flex-col items-center justify-center rounded-2xl bg-white text-center shadow-lg">
+    <div className="flex size-16 flex-col items-center justify-center rounded-card bg-white text-center shadow-lg">
       <span className="text-2xl font-bold leading-none text-soos-dark">{day}</span>
       <span className="mt-1 text-xs font-semibold uppercase tracking-wider text-soos-purple">
         {month}

@@ -67,13 +67,13 @@ export default function ContactPage() {
               <p className="mt-2 text-base text-soos-ink/85">
                 Blijf op de hoogte van onze activiteiten op social media.
               </p>
-              <div className="mt-4 inline-flex rounded-2xl bg-soos-dark p-3">
+              <div className="mt-4 inline-flex rounded-card bg-soos-dark p-3">
                 <SocialIcons />
               </div>
             </div>
           </div>
 
-          <div className="rounded-2xl bg-soos-mist/60 p-5 ring-1 ring-soos-dark/5 sm:p-8">
+          <div className="rounded-card bg-soos-mist/60 p-5 ring-1 ring-soos-dark/5 sm:p-8">
             <h2 className="text-2xl font-bold tracking-tight text-soos-dark">Stuur een bericht</h2>
             <p className="mt-1 text-sm text-soos-ink/75">Alle velden zijn verplicht.</p>
             <div className="mt-6">
@@ -89,7 +89,7 @@ export default function ContactPage() {
           <p className="mt-1 text-sm text-soos-ink/80">
             {contactInfo.street}, {contactInfo.postalCode} {contactInfo.city}
           </p>
-          <div className="mt-5 overflow-hidden rounded-2xl ring-1 ring-soos-dark/10">
+          <div className="mt-5 overflow-hidden rounded-card ring-1 ring-soos-dark/10">
             <MapEmbed
               src={contactInfo.embedUrl}
               title={`Kaart met de locatie van Soos in Kamperland, ${contactInfo.street}, ${contactInfo.city}`}

@@ -45,7 +45,7 @@ export default function OverOnsPage() {
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {doing.map(({ label, text, icon: Icon }) => (
-            <li key={label} className="rounded-2xl bg-soos-mist p-5">
+            <li key={label} className="rounded-card bg-soos-mist p-5">
               <span
                 aria-hidden
                 className="flex size-11 items-center justify-center rounded-full bg-white text-soos-purple shadow-sm"
@@ -79,7 +79,7 @@ export default function OverOnsPage() {
             ))}
           </ul>
 
-          <div className="mt-12 flex flex-col items-start gap-4 rounded-[2rem] bg-soos-dark p-8 text-white sm:flex-row sm:items-center sm:justify-between sm:p-10">
+          <div className="mt-12 flex flex-col items-start gap-4 rounded-panel bg-soos-dark p-8 text-white sm:flex-row sm:items-center sm:justify-between sm:p-10">
             <div>
               <h2 className="text-2xl font-bold sm:text-3xl">Wil je ons helpen?</h2>
               <p className="mt-2 max-w-lg text-white/85">

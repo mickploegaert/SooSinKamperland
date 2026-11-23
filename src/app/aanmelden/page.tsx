@@ -32,7 +32,7 @@ export default async function AanmeldenPage({ searchParams }: PageProps<"/aanmel
       <PageCard>
         <div className="mx-auto max-w-2xl">
           {options.length === 0 ? (
-            <p className="rounded-2xl bg-soos-mist px-6 py-8 text-soos-dark">
+            <p className="rounded-card bg-soos-mist px-6 py-8 text-soos-dark">
               Er zijn nu geen activiteiten waarvoor je je kunt aanmelden.
             </p>
           ) : (

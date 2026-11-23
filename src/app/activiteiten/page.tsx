@@ -18,7 +18,7 @@ export default async function ActiviteitenPage() {
       </PageHero>
       <PageCard>
         {!next ? (
-          <p className="rounded-2xl bg-soos-mist px-6 py-8 text-soos-dark">
+          <p className="rounded-card bg-soos-mist px-6 py-8 text-soos-dark">
             Er zijn nu geen aankomende activiteiten. Kom snel weer kijken!
           </p>
         ) : (
