@@ -93,7 +93,7 @@ async function createSeed(): Promise<LocalSchema> {
         page: "contact",
         section: "contactgegevens",
         title: "Neem contact met ons op",
-        body: "Heb je een vraag over een activiteit of wil je een zaal huren? Neem gerust contact met ons op, we helpen je graag verder.",
+        body: "Heb je een vraag over een activiteit of wil je sponsor worden? Neem gerust contact met ons op, we helpen je graag verder.",
         imageUrl: null,
         updatedAt: now,
         updatedBy: 1,
