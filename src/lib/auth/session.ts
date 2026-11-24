@@ -6,7 +6,7 @@ import { jwtVerify, SignJWT } from "jose";
 
 /**
  * Stateless sessie in een ondertekende, httpOnly cookie (JWT, HS256).
- * Alleen het beheerders-id en de rol staan erin, geen persoonsgegevens.
+ * Alleen het beheerders-id staat erin, geen persoonsgegevens.
  */
 
 export const SESSION_COOKIE = "soos_sessie";
@@ -14,7 +14,6 @@ export const SESSION_DURATION_MS = 8 * 60 * 60 * 1000; // één werkdag
 
 export type SessionPayload = {
   adminId: number;
-  role: string;
 };
 
 let cachedKey: Uint8Array | null = null;
@@ -57,7 +56,7 @@ export async function decryptSession(token: string | undefined): Promise<Session
       algorithms: ["HS256"],
     });
     if (typeof payload.adminId !== "number") return null;
-    return { adminId: payload.adminId, role: String(payload.role) };
+    return { adminId: payload.adminId };
   } catch {
     return null;
   }

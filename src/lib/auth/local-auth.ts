@@ -46,7 +46,7 @@ export const localAuthService: AuthService = {
     if (!valid) return { ok: false, reason: "invalid-credentials" };
 
     const expiresAt = new Date(Date.now() + SESSION_DURATION_MS);
-    const token = await encryptSession({ adminId: admin.id, role: admin.role }, expiresAt);
+    const token = await encryptSession({ adminId: admin.id }, expiresAt);
     (await cookies()).set(SESSION_COOKIE, token, sessionCookieOptions(expiresAt));
 
     return { ok: true, admin: toProfile(admin) };

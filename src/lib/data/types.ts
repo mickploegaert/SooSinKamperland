@@ -4,8 +4,6 @@
  * Supabase-adapter de rijen één-op-één kan omzetten.
  */
 
-export type AdminRole = "hoofdbeheerder" | "beheerder";
-
 /** Tabel `beheerder` */
 export type Admin = {
   /** beheerder_id */
@@ -16,7 +14,6 @@ export type Admin = {
   email: string;
   /** wachtwoord_hash — bij Supabase beheert Supabase Auth dit veld zelf. */
   passwordHash: string;
-  role: AdminRole;
   /** aangemaakt_op */
   createdAt: string;
 };

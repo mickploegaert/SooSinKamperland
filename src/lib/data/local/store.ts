@@ -74,7 +74,6 @@ async function createSeed(): Promise<LocalSchema> {
         passwordHash: await hashPassword(
           process.env.SEED_ADMIN_PASSWORD ?? "SoosBeheer2026!",
         ),
-        role: "hoofdbeheerder",
         createdAt: now,
       },
     ],
