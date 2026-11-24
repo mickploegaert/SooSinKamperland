@@ -4,7 +4,7 @@ import { DashboardHeading, EmptyState, buttonSecondary } from "@/components/dash
 import { RefreshButton } from "@/components/sumup/refresh-button";
 import { SumUpStatus } from "@/components/sumup/sumup-status";
 import { SumUpTable } from "@/components/sumup/sumup-table";
-import { hasPermission, requireAdmin } from "@/lib/auth/dal";
+import { requireAdmin } from "@/lib/auth/dal";
 import { formatEuro } from "@/lib/money";
 import { loadSumUpOverview, PAYMENT_TYPE_LABELS } from "@/lib/sumup";
 import { computeRegisterSummary } from "@/lib/sumup/register";
@@ -14,18 +14,8 @@ export const metadata: Metadata = { title: "Kassa" };
 const RECENT_COUNT = 5;
 
 export default async function RegisterPage() {
-  const admin = await requireAdmin();
-
-  if (!hasPermission(admin, "kassa:bekijken")) {
-    return (
-      <section>
-        <DashboardHeading title="Kassa" />
-        <p role="alert" className="mt-5 rounded-lg border border-soos-expense/30 bg-soos-expense-soft px-4 py-3 text-sm font-semibold text-soos-expense">
-          Je hebt geen toegang tot de kassagegevens.
-        </p>
-      </section>
-    );
-  }
+  // Alleen ingelogde beheerders: anderen gaan naar de inlogpagina.
+  await requireAdmin();
 
   const overview = await loadSumUpOverview();
   const summary = computeRegisterSummary(overview.transactions);
