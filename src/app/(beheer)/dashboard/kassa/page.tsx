@@ -67,8 +67,8 @@ export default async function RegisterPage() {
               ))}
             </dl>
 
-            <div className="grid gap-6 xl:grid-cols-[1fr_18rem]">
-              <div>
+            <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_18rem]">
+              <div className="min-w-0">
                 <div className="flex items-end justify-between gap-4">
                   <h2 className="text-lg font-bold text-soos-navy">Laatste transacties</h2>
                   <Link href="/dashboard/sumup" className="text-sm font-semibold text-soos-violet hover:underline">
