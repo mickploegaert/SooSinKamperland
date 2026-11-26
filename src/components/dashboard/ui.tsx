@@ -64,7 +64,7 @@ export function BackLink({ href, label }: { href: string; label: string }) {
 /** Kader met rand rond tabellen, zoals "Recente registraties" in het ontwerp. */
 export function TableCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-soos-line bg-white px-3 py-2 text-soos-navy">
+    <div className="relative overflow-x-auto rounded-lg border border-soos-line bg-white px-3 py-2 text-soos-navy">
       {children}
     </div>
   );
