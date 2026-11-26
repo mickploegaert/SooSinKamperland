@@ -10,17 +10,22 @@ const DASHBOARD_PATH = "/dashboard";
  */
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const loggedIn = await getAuthService().hasValidSession(request);
+  const { loggedIn, cookiesToSet, headers } = await getAuthService().checkSession(request);
 
+  let response: NextResponse;
   if (pathname.startsWith(DASHBOARD_PATH) && !loggedIn) {
-    return NextResponse.redirect(new URL(LOGIN_PATH, request.nextUrl));
+    response = NextResponse.redirect(new URL(LOGIN_PATH, request.nextUrl));
+  } else if (pathname === LOGIN_PATH && loggedIn) {
+    response = NextResponse.redirect(new URL(DASHBOARD_PATH, request.nextUrl));
+  } else {
+    // Geeft eventueel ververste cookies door aan de pagina's van dit verzoek.
+    response = NextResponse.next({ request });
   }
 
-  if (pathname === LOGIN_PATH && loggedIn) {
-    return NextResponse.redirect(new URL(DASHBOARD_PATH, request.nextUrl));
-  }
-
-  return NextResponse.next();
+  // Ververste sessiecookies (Supabase) ook naar de browser sturen.
+  for (const { name, value, options } of cookiesToSet) response.cookies.set(name, value, options);
+  for (const [key, value] of Object.entries(headers)) response.headers.set(key, value);
+  return response;
 }
 
 export const config = {

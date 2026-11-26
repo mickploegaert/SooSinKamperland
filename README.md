@@ -23,6 +23,11 @@ Dit account kan worden aangepast met de `SEED_ADMIN_*`-variabelen in `.env.local
 
 ## Opslag en Supabase
 
-Er wordt voorlopig een lokale JSON-opslag gebruikt. Alle code praat met de contracten in
-`src/lib/data/repositories.ts` en `src/lib/auth/service.ts`, zodat later eenvoudig naar
-Supabase kan worden overgestapt. Zie [docs/supabase.md](docs/supabase.md).
+De website kan met twee soorten opslag draaien, ingesteld met `DATA_PROVIDER` in `.env.local`:
+
+- `local` (standaard): een JSON-bestand in `.data/`, handig voor ontwikkeling zonder account.
+- `supabase`: de Supabase-database met Supabase Auth voor het inloggen.
+
+Alle code praat met de contracten in `src/lib/data/repositories.ts` en
+`src/lib/auth/service.ts`; pagina's en formulieren werken met beide hetzelfde.
+Hoe je Supabase instelt staat in [docs/supabase.md](docs/supabase.md).

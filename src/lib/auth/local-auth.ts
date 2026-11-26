@@ -63,7 +63,8 @@ export const localAuthService: AuthService = {
     return admin ? toProfile(admin) : null;
   },
 
-  async hasValidSession(request) {
-    return (await decryptSession(request.cookies.get(SESSION_COOKIE)?.value)) !== null;
+  async checkSession(request) {
+    const loggedIn = (await decryptSession(request.cookies.get(SESSION_COOKIE)?.value)) !== null;
+    return { loggedIn, cookiesToSet: [], headers: {} };
   },
 };
