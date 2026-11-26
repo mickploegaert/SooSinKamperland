@@ -1,33 +1,37 @@
+import Image from "next/image";
+
 type BrandMarkProps = {
-  /** "light" = witte variant voor donkere achtergronden, "dark" = donkere variant voor lichte achtergronden. */
+  /** "light" = witte tekst voor donkere achtergronden, "dark" = donkere tekst voor lichte achtergronden. */
   tone?: "light" | "dark";
   className?: string;
 };
 
 /**
- * Het beeldmerk uit de schermontwerpen: drie figuren met de naam ernaast.
+ * Het logo van Soos in Kamperland met de naam ernaast, zoals in de header van
+ * de website (src/components/site-header.tsx).
  */
 export function BrandMark({ tone = "dark", className = "" }: BrandMarkProps) {
-  const color = tone === "light" ? "text-white" : "text-soos-navy";
+  const color = tone === "light" ? "text-white" : "text-soos-dark";
 
   return (
-    <span className={`inline-flex items-center gap-2 ${color} ${className}`}>
-      <svg
-        viewBox="0 0 40 28"
-        aria-hidden="true"
-        className="h-7 w-10 shrink-0 fill-current"
-      >
-        <circle cx="8" cy="6" r="4.2" />
-        <circle cx="20" cy="4.6" r="4.6" />
-        <circle cx="32" cy="6" r="4.2" />
-        <path d="M1 27v-8.5a7 7 0 0 1 7-7h0a7 7 0 0 1 4.6 1.7A8.5 8.5 0 0 0 11.5 17v10Z" />
-        <path d="M39 27v-8.5a7 7 0 0 0-7-7h0a7 7 0 0 0-4.6 1.7 8.5 8.5 0 0 1 1.1 3.8v10Z" />
-        <path d="M12.5 27V18a7.5 7.5 0 0 1 15 0v9Z" />
-      </svg>
-      <span className="text-[11px] font-bold leading-tight">
-        Soos in
-        <br />
-        Kamperland
+    <span className={`inline-flex items-center gap-3 ${color} ${className}`}>
+      <Image
+        src="/soos.png"
+        alt=""
+        width={48}
+        height={48}
+        priority
+        className="size-11 shrink-0 rounded-full bg-white object-cover sm:size-12"
+      />
+      <span className="flex flex-col leading-tight">
+        <span className="font-display text-base font-bold sm:text-lg">Soos in Kamperland</span>
+        <span
+          className={`hidden text-[0.7rem] font-medium uppercase tracking-[0.2em] sm:block ${
+            tone === "light" ? "text-white/70" : "text-soos-muted"
+          }`}
+        >
+          Jong &amp; oud welkom
+        </span>
       </span>
     </span>
   );
