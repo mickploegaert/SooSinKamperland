@@ -68,6 +68,11 @@ export function ActivityCard({
         >
           {activity.name}
         </h3>
+        {activity.time || activity.location ? (
+          <p className="mt-2 text-sm font-medium text-soos-ink/75">
+            {[activity.time, activity.location].filter(Boolean).join(" · ")}
+          </p>
+        ) : null}
         <p
           className={`mt-3 leading-7 text-soos-ink/85 ${featured ? "text-base sm:text-lg" : "text-sm"}`}
         >

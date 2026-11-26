@@ -21,7 +21,7 @@ function Logos({ sponsors, hidden = false }: { sponsors: Sponsor[]; hidden?: boo
             unoptimized={sponsor.logoUrl?.startsWith("http")}
             fill
             sizes="160px"
-            className="object-contain p-3 opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none"
+            className="object-contain p-3 transition duration-300 group-hover:scale-105 motion-reduce:transition-none"
           />
         </li>
       ))}

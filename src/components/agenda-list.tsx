@@ -113,6 +113,11 @@ export function AgendaList({
                           {formatWeekday(item.date)}{item.category ? ` · ${item.category}` : ""}
                         </p>
                         <h3 className="text-lg font-semibold text-soos-dark">{item.name}</h3>
+                        {item.time || item.location ? (
+                          <p className="mt-0.5 text-sm font-medium text-soos-ink/75">
+                            {[item.time, item.location].filter(Boolean).join(" · ")}
+                          </p>
+                        ) : null}
                         <p className="mt-1 text-sm leading-6 text-soos-ink/80">
                           {item.description}
                         </p>

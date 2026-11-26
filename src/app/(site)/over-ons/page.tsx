@@ -29,7 +29,16 @@ export default function OverOnsPage() {
 
       <PageCard>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <SectionHeading id="verhaal-titel" eyebrow="Wat is ons verhaal" title="Een plek voor jong en oud" />
+          <div>
+            <Image
+              src="/soos.png"
+              alt="Logo van Soos in Kamperland"
+              width={112}
+              height={112}
+              className="mb-6 size-24 rounded-full object-cover shadow-card-lift ring-1 ring-soos-dark/10 sm:size-28"
+            />
+            <SectionHeading id="verhaal-titel" eyebrow="Wat is ons verhaal" title="Een plek voor jong en oud" />
+          </div>
           <div className="space-y-4 text-base leading-8 text-soos-ink/90">
             <p>
               Soos in Kamperland is er voor iedereen in en rond Kamperland: kinderen, jongeren en

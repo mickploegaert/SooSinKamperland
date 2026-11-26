@@ -1,4 +1,5 @@
 import type { Activity as StoredActivity } from "@/lib/data/types";
+import { formatTimeRange } from "@/lib/format";
 
 /** Een activiteit zoals de publieke pagina's die tonen (één datum per voorkomen). */
 export type Activity = {
@@ -8,6 +9,9 @@ export type Activity = {
   image: string;
   imageAlt: string;
   category: string | null;
+  /** "20:00 – 23:00", als de tijd bekend is */
+  time: string | null;
+  location: string | null;
 };
 
 const FALLBACK_IMAGE = "/activiteiten/soos-1.jpg";
@@ -44,6 +48,8 @@ export function toPublicActivities(rows: StoredActivity[], today: string): Activ
       image: row.imageUrl ?? FALLBACK_IMAGE,
       imageAlt: row.imageUrl ? `Afbeelding bij ${row.name}` : FALLBACK_ALT,
       category: row.category,
+      time: formatTimeRange(row.startTime, row.endTime),
+      location: row.location,
     };
     const dates = [row.startDate];
     if (row.repeatEvery && row.repeatUntil) {

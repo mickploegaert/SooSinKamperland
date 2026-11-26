@@ -22,7 +22,7 @@ export function MainNav() {
 
   return (
     <>
-      <div className="hidden items-center gap-2 xl:flex">
+      <div className="hidden items-center gap-2 lg:flex">
         <nav
           aria-label="Hoofdmenu"
           className="flex items-center gap-1 rounded-full bg-white/5 p-1 ring-1 ring-white/10"
@@ -32,7 +32,7 @@ export function MainNav() {
               key={item.href}
               href={item.href}
               aria-current={isCurrentPage(pathname, item.href) ? "page" : undefined}
-              className="rounded-full px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white aria-[current=page]:bg-white aria-[current=page]:text-soos-dark aria-[current=page]:shadow-sm motion-reduce:transition-none"
+              className="rounded-full px-3 py-2 text-sm font-semibold text-white/80 focus-visible:ring-2 focus-visible:ring-soos-accent focus-visible:outline-none xl:px-4 transition hover:bg-white/10 hover:text-white aria-[current=page]:bg-white aria-[current=page]:text-soos-dark aria-[current=page]:shadow-sm motion-reduce:transition-none"
             >
               {item.label}
             </Link>
@@ -43,10 +43,10 @@ export function MainNav() {
         </ButtonLink>
       </div>
 
-      <div className="xl:hidden">
+      <div className="lg:hidden">
         <button
           type="button"
-          className="flex size-11 items-center justify-center rounded-full ring-1 ring-inset ring-white/30 transition hover:bg-white/10"
+          className="flex size-11 items-center justify-center rounded-full ring-1 ring-inset ring-white/30 transition hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-soos-accent focus-visible:outline-none"
           aria-expanded={open}
           aria-controls="mobiel-menu"
           onClick={() => setOpen((value) => !value)}
@@ -66,7 +66,7 @@ export function MainNav() {
                   <Link
                     href={item.href}
                     aria-current={isCurrentPage(pathname, item.href) ? "page" : undefined}
-                    className="block rounded-xl px-4 py-3 text-base font-semibold text-white/85 transition hover:bg-white/10 aria-[current=page]:bg-white aria-[current=page]:text-soos-dark"
+                    className="block rounded-xl px-4 py-3 text-base focus-visible:ring-2 focus-visible:ring-soos-accent focus-visible:outline-none font-semibold text-white/85 transition hover:bg-white/10 aria-[current=page]:bg-white aria-[current=page]:text-soos-dark"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}

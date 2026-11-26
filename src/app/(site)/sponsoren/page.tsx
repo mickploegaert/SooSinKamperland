@@ -1,9 +1,10 @@
-import { Award, Crown, ExternalLink, Medal, type LucideIcon } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonLink } from "@/components/button";
 import { PageCard, PageHero } from "@/components/page-hero";
 import { SectionDivider } from "@/components/section-divider";
+import { RankShape } from "@/components/rank-shapes";
 import { SectionHeading } from "@/components/section-heading";
 import type { Sponsor } from "@/lib/data/types";
 import { getPageContent } from "@/lib/public-content";
@@ -19,28 +20,11 @@ export const metadata: Metadata = {
 
 const SPONSOR_URL = "https://www.soosinkamperland.nl/sponsorworden.php";
 
-const toneStyles: Record<
-  FriendTier["tone"],
-  { ring: string; badge: string; price: string; icon: LucideIcon }
-> = {
-  gold: {
-    ring: "from-[#f6d77a] via-[#e3b13f] to-[#b9852a]",
-    badge: "bg-gradient-to-br from-[#f6d77a] to-[#c8922f] text-[#4a3207]",
-    price: "text-[#f6d77a]",
-    icon: Crown,
-  },
-  silver: {
-    ring: "from-[#eceff4] via-[#b8bfcc] to-[#8b93a3]",
-    badge: "bg-gradient-to-br from-[#f1f3f7] to-[#a4acbb] text-[#2f3441]",
-    price: "text-[#e3e7ee]",
-    icon: Award,
-  },
-  bronze: {
-    ring: "from-[#e8b88a] via-[#c98a52] to-[#8f5a2c]",
-    badge: "bg-gradient-to-br from-[#eec29a] to-[#b07440] text-[#3d230d]",
-    price: "text-[#eec29a]",
-    icon: Medal,
-  },
+/** Elk papiertje hangt een beetje scheef, alsof het op de muur geplakt is. */
+const cardTilt: Record<FriendTier["tone"], string> = {
+  gold: "sm:-rotate-2",
+  silver: "sm:rotate-1",
+  bronze: "sm:-rotate-1",
 };
 
 function SponsorLogo({ sponsor }: { sponsor: Sponsor }) {
@@ -143,32 +127,23 @@ export default async function SponsorenPage() {
               </div>
             </div>
 
-            <ul className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-              {friendTiers.map((tier) => {
-                const tone = toneStyles[tier.tone];
-                const Icon = tone.icon;
-                return (
-                  <li
-                    key={tier.name}
-                    className={`rounded-card bg-gradient-to-br p-[1.5px] transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${tone.ring}`}
-                  >
-                    <div className="flex h-full flex-col items-center rounded-[calc(1rem-1.5px)] bg-soos-deep px-5 py-7 text-center lg:flex-row lg:gap-5 lg:text-left xl:flex-col xl:text-center">
-                      <span
-                        aria-hidden
-                        className={`flex size-14 shrink-0 items-center justify-center rounded-full shadow-inner ${tone.badge}`}
-                      >
-                        <Icon className="size-7" strokeWidth={1.75} />
-                      </span>
-                      <div className="mt-4 lg:mt-0 xl:mt-4">
-                        <h3 className="text-lg font-semibold">{tier.name}</h3>
-                        <p className={`mt-1 text-3xl font-bold ${tone.price}`}>
-                          &euro;&nbsp;{tier.price}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
+            <ul className="grid gap-6 pt-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              {friendTiers.map((tier) => (
+                <li
+                  key={tier.name}
+                  className={`relative rounded-card bg-soos-cream px-5 pb-6 pt-9 text-center text-soos-dark shadow-lg shadow-black/25 transition duration-300 hover:rotate-0 motion-reduce:transition-none lg:flex lg:items-center lg:gap-6 lg:py-6 lg:text-left xl:block xl:pb-6 xl:pt-9 xl:text-center ${cardTilt[tier.tone]}`}
+                >
+                  <span
+                    aria-hidden
+                    className="absolute -top-3 left-1/2 h-6 w-16 -translate-x-1/2 -rotate-3 rounded-[2px] bg-white/80 shadow-sm"
+                  />
+                  <RankShape tone={tier.tone} className="mx-auto size-16 shrink-0 lg:mx-0 xl:mx-auto" />
+                  <div className="mt-3 lg:mt-0 xl:mt-3">
+                    <h3 className="font-display text-lg font-semibold">{tier.name}</h3>
+                    <p className="mt-0.5 text-2xl font-bold text-soos-purple">&euro;&nbsp;{tier.price}</p>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
 
