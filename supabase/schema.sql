@@ -53,6 +53,8 @@ create table if not exists public.activiteit (
   starttijd      time,
   eindtijd       time,
   locatie        varchar(255),
+  herhaling      varchar(5) check (herhaling in ('week', 'month')),
+  herhaling_tot  date,
   afbeelding_url varchar(255),
   is_zichtbaar   boolean      not null default true,
   beheerder_id   bigint references public.beheerder (beheerder_id) on delete set null,

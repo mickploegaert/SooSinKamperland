@@ -22,9 +22,9 @@ export type LocalSchema = {
 
 /** Voorbeeldactiviteiten uit de schermontwerpen. */
 function seedActivities(): Activity[] {
-  const base = { endDate: null, location: "Soos in Kamperland", imageUrl: "/activiteiten/soos-1.jpg", isVisible: true, updatedBy: 1 };
+  const base = { endDate: null, repeatEvery: null, repeatUntil: null, location: "Soos in Kamperland", imageUrl: "/activiteiten/soos-1.jpg", isVisible: true, updatedBy: 1 };
   return [
-    { ...base, id: 1, name: "Bingo Avond", category: "Spel", startDate: "2026-12-12", startTime: "20:00", endTime: "23:00",
+    { ...base, repeatEvery: "month" as const, repeatUntil: "2027-03-31", id: 1, name: "Bingo Avond", category: "Spel", startDate: "2026-12-12", startTime: "20:00", endTime: "23:00",
       description: "Een gezellige avond vol spel, plezier en leuke prijzen. Kom langs bij Soos in Kamperland en doe mee!" },
     { ...base, id: 2, name: "Pubquiz", category: "Spel", startDate: "2026-11-28", startTime: "20:00", endTime: "23:00",
       description: "Test je kennis samen met je vrienden tijdens onze pubquiz. Geef je team op aan de bar." },

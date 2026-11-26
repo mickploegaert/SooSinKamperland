@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { socialLinks, type SocialLink } from "@/lib/social";
 
 const icons: Record<SocialLink["name"], React.ReactNode> = {
@@ -13,26 +14,72 @@ const icons: Record<SocialLink["name"], React.ReactNode> = {
   ),
 };
 
-export function SocialIcons() {
-  const links = socialLinks.filter((link) => link.href);
+function BrandIcon({ name, className }: { name: SocialLink["name"]; className: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      {icons[name]}
+    </svg>
+  );
+}
+
+function activeLinks() {
+  return socialLinks.filter((link) => link.href);
+}
+
+const newTab = "(opent in een nieuw tabblad)";
+
+/** Compacte knoppen met icoon en naam, voor op een donkere achtergrond (footer). */
+export function SocialPills() {
+  const links = activeLinks();
   if (links.length === 0) return null;
 
   return (
-    <ul className="flex gap-3" aria-label="Sociale media">
+    <ul className="flex flex-wrap gap-2" aria-label="Sociale media">
       {links.map((link) => (
         <li key={link.name}>
           <a
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 transition hover:-translate-y-0.5 hover:bg-white hover:text-soos-purple"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/10 px-4 text-sm font-semibold text-white ring-1 ring-white/20 transition hover:bg-white hover:text-soos-dark motion-reduce:transition-none"
           >
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className="size-5">
-              {icons[link.name]}
-            </svg>
-            <span className="sr-only">
-              {link.name} van Soos in Kamperland (opent in een nieuw tabblad)
+            <BrandIcon name={link.name} className="size-5" />
+            {link.name}
+            <span className="sr-only">{newTab}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Lichte kaarten met icoon, naam en account, voor op een witte achtergrond (contact). */
+export function SocialCards() {
+  const links = activeLinks();
+  if (links.length === 0) return null;
+
+  return (
+    <ul className="space-y-3" aria-label="Sociale media">
+      {links.map((link) => (
+        <li key={link.name}>
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 rounded-card bg-white p-4 ring-1 ring-soos-dark/10 transition hover:bg-soos-mist hover:ring-soos-purple/40 motion-reduce:transition-none"
+          >
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-soos-mist text-soos-purple transition group-hover:bg-white">
+              <BrandIcon name={link.name} className="size-5" />
             </span>
+            <span className="flex-1">
+              <span className="block font-semibold text-soos-dark">{link.name}</span>
+              <span className="block text-sm text-soos-ink/75">{link.handle}</span>
+            </span>
+            <ArrowUpRight
+              aria-hidden
+              className="size-5 text-soos-ink/50 transition group-hover:text-soos-purple"
+            />
+            <span className="sr-only">{newTab}</span>
           </a>
         </li>
       ))}

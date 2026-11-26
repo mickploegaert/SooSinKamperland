@@ -77,6 +77,10 @@ export type Activity = {
   endTime: string | null;
   /** locatie */
   location: string | null;
+  /** herhaling: elke week of maand (optioneel) */
+  repeatEvery: "week" | "month" | null;
+  /** laatste datum waarop de herhaling doorloopt, JJJJ-MM-DD */
+  repeatUntil: string | null;
   /** afbeelding_url */
   imageUrl: string | null;
   /** is_zichtbaar */

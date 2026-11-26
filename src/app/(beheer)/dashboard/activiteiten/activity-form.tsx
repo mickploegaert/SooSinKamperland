@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import {
   CheckboxField,
   FormError,
+  SelectField,
   TextAreaField,
   TextField,
 } from "@/components/dashboard/form-fields";
@@ -30,6 +31,20 @@ export function ActivityForm({
         <TextField name="endDate" label="Einddatum" type="date" state={state} defaultValue={activity?.endDate ?? ""} hint="Alleen voor activiteiten van meerdere dagen." />
         <TextField name="startTime" label="Begintijd" type="time" state={state} defaultValue={activity?.startTime ?? ""} />
         <TextField name="endTime" label="Eindtijd" type="time" state={state} defaultValue={activity?.endTime ?? ""} />
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <SelectField
+          name="repeatEvery"
+          label="Herhalen"
+          state={state}
+          defaultValue={activity?.repeatEvery ?? ""}
+          options={[
+            { value: "", label: "Niet herhalen" },
+            { value: "week", label: "Elke week" },
+            { value: "month", label: "Elke maand" },
+          ]}
+        />
+        <TextField name="repeatUntil" label="Herhalen t/m" type="date" state={state} defaultValue={activity?.repeatUntil ?? ""} hint="Verplicht als de activiteit herhaald wordt." />
       </div>
       <TextAreaField name="description" label="Beschrijving" required state={state} defaultValue={activity?.description} rows={6} />
       <div className="grid gap-5 sm:grid-cols-2">

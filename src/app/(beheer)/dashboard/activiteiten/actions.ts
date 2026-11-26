@@ -37,6 +37,8 @@ export async function saveActivity(
   const startTime = text(formData, "startTime");
   const endTime = text(formData, "endTime");
   const location = text(formData, "location");
+  const repeatEvery = text(formData, "repeatEvery");
+  const repeatUntil = text(formData, "repeatUntil");
   const imageUrl = text(formData, "imageUrl");
 
   const errors: Record<string, string> = {};
@@ -51,6 +53,12 @@ export async function saveActivity(
   if (startTime && !isValidTime(startTime)) errors.startTime = "Vul een geldige tijd in (UU:MM).";
   if (endTime && !isValidTime(endTime)) errors.endTime = "Vul een geldige tijd in (UU:MM).";
   else if (endTime && !startTime) errors.startTime = "Vul ook een begintijd in.";
+  if (repeatEvery && repeatEvery !== "week" && repeatEvery !== "month")
+    errors.repeatEvery = "Kies elke week, elke maand of niet herhalen.";
+  if (repeatEvery && !repeatUntil) errors.repeatUntil = "Vul in tot wanneer de activiteit herhaald wordt.";
+  else if (repeatUntil && !isValidDate(repeatUntil)) errors.repeatUntil = "Vul een geldige datum in.";
+  else if (repeatUntil && startDate && repeatUntil < startDate)
+    errors.repeatUntil = "De herhaling moet na de startdatum eindigen.";
   if (category.length > 50) errors.category = "De categorie mag maximaal 50 tekens lang zijn.";
   if (location.length > 255) errors.location = "De locatie mag maximaal 255 tekens lang zijn.";
   if (imageUrl && (!isValidUrlOrPath(imageUrl) || imageUrl.length > 255))
@@ -69,6 +77,8 @@ export async function saveActivity(
     startTime: startTime || null,
     endTime: endTime || null,
     location: location || null,
+    repeatEvery: repeatEvery === "week" || repeatEvery === "month" ? repeatEvery : null,
+    repeatUntil: repeatEvery ? repeatUntil : null,
     imageUrl: imageUrl || null,
     isVisible: formData.get("isVisible") === "on",
     updatedBy: admin.id,

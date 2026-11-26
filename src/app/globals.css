@@ -2,10 +2,29 @@
 
 @theme inline {
   --font-sans: var(--font-poppins), "Poppins", sans-serif;
-  --color-soos-dark: #260b45;
-  --color-soos-purple: #5315a5;
-  --color-soos-ink: #292633;
-  --color-soos-mist: #f4f0fa;
+  /* Kleurenthema Soos in Kamperland.
+     Merkkleur: paars. Warme accentkleur: geel (alleen voor kleine highlights). */
+  --color-soos-dark: #260b45; /* diepste paars: koppen, header, footer */
+  --color-soos-deep: #321259; /* kaarten op een donkere achtergrond */
+  --color-soos-purple: #5315a5; /* primaire knoppen, links */
+  --color-soos-purple-hover: #3f1080; /* hover van primaire knoppen */
+  --color-soos-glow: #8a4be0; /* zachte lichtvlekken in hero's */
+  --color-soos-mist: #f4f0fa; /* lichte paarse achtergrond */
+  --color-soos-ink: #292633; /* lopende tekst */
+  --color-soos-accent: #ffb703; /* warm geel: badge, onderlijn, iconen op donker */
+  --color-soos-cream: #fdf8ef; /* warme tint voor afwisselende secties */
+
+  --font-display: var(--font-fredoka), "Fredoka", var(--font-poppins), sans-serif;
+
+  --radius-card: 1rem; /* kaarten en panelen */
+  --radius-panel: 2rem; /* grote vlakken */
+
+  --text-hero: clamp(2.25rem, 1.4rem + 4vw, 3.75rem);
+  --text-hero--line-height: 1.05;
+  --text-section: clamp(1.875rem, 1.5rem + 1.5vw, 2.25rem);
+  --text-section--line-height: 1.15;
+
+  --shadow-card-lift: 0 40px 80px -48px rgb(38 11 69 / 0.65);
 
   /* Kleuren uit de schermontwerpen (dashboard & inloggen). */
   --color-soos-navy: #11112b;
@@ -22,13 +41,85 @@
   --color-soos-expense-soft: #fceff1;
 }
 
+@keyframes sponsor-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gedeeld oppervlak voor alle kaarten: zelfde rand, schaduw en hover. */
+@utility soos-card {
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  box-shadow: 0 0 0 1px rgb(38 11 69 / 0.1);
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 0 0 1px rgb(83 21 165 / 0.4),
+      0 24px 40px -24px rgb(83 21 165 / 0.45);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+/* Zachte fade-in voor de inhoud van elke pagina. */
+@utility page-enter {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fade-up 450ms ease-out both;
+  }
+}
+
 body {
   background: #ffffff;
-  color: #292633;
+  color: var(--color-soos-ink);
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 :focus-visible {
-  outline: 2px solid #5315a5;
+  outline: 2px solid var(--color-soos-purple);
   outline-offset: 2px;
 }
 
