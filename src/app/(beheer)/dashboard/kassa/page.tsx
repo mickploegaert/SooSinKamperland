@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { DashboardHeading, EmptyState, buttonSecondary } from "@/components/dashboard/ui";
 import { RefreshButton } from "@/components/sumup/refresh-button";
 import { SumUpStatus } from "@/components/sumup/sumup-status";
 import { SumUpTable } from "@/components/sumup/sumup-table";
 import { requireAdmin } from "@/lib/auth/dal";
+import { isSumUpEnabled } from "@/lib/sumup/feature";
 import { formatEuro } from "@/lib/money";
 import { loadSumUpOverview, PAYMENT_TYPE_LABELS } from "@/lib/sumup";
 import { computeRegisterSummary } from "@/lib/sumup/register";
@@ -16,6 +18,8 @@ const RECENT_COUNT = 5;
 export default async function RegisterPage() {
   // Alleen ingelogde beheerders: anderen gaan naar de inlogpagina.
   await requireAdmin();
+  // Staat uit tot de SumUp-koppeling getest is (SUMUP_ENABLED=true).
+  if (!isSumUpEnabled()) notFound();
 
   const overview = await loadSumUpOverview();
   const summary = computeRegisterSummary(overview.transactions);

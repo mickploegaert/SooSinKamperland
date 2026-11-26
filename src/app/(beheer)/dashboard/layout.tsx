@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 import { DashboardTopbar } from "@/components/dashboard/dashboard-topbar";
 import { requireAdmin } from "@/lib/auth/dal";
+import { visibleDashboardNavigation } from "@/lib/dashboard-navigation";
+import { isSumUpEnabled } from "@/lib/sumup/feature";
 
 export const metadata: Metadata = {
   title: { default: "Dashboard", template: "%s | Dashboard Soos in Kamperland" },
@@ -16,7 +18,7 @@ export default async function DashboardLayout({ children }: LayoutProps<"/dashbo
       <DashboardTopbar admin={admin} />
       <div className="flex flex-1 flex-col gap-4 lg:flex-row">
         <aside className="lg:flex lg:w-44 lg:shrink-0 lg:flex-col">
-          <DashboardSidebar />
+          <DashboardSidebar items={visibleDashboardNavigation(isSumUpEnabled())} />
         </aside>
         <main id="inhoud" className="min-w-0 flex-1 py-1 lg:py-2">
           {children}

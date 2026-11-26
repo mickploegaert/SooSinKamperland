@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { dashboardNavigation, isActiveDashboardItem } from "@/lib/dashboard-navigation";
+import { type DashboardNavItem, isActiveDashboardItem } from "@/lib/dashboard-navigation";
 
-export function DashboardSidebar() {
+export function DashboardSidebar({ items }: { items: DashboardNavItem[] }) {
   const pathname = usePathname();
 
   return (
@@ -14,7 +14,7 @@ export function DashboardSidebar() {
     >
       <p className="px-2 text-xs font-semibold uppercase tracking-wider text-[#c9c3e6]">Menu</p>
       <ul className="relative mt-3 flex gap-1 overflow-x-auto lg:mt-5 lg:flex-col lg:gap-3">
-        {dashboardNavigation.map((item) => {
+        {items.map((item) => {
           const active = isActiveDashboardItem(pathname, item.href);
           return (
             <li key={item.href} className="shrink-0">

@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { DashboardHeading, EmptyState } from "@/components/dashboard/ui";
 import { RefreshButton } from "@/components/sumup/refresh-button";
 import { SumUpStatus } from "@/components/sumup/sumup-status";
 import { SumUpTable } from "@/components/sumup/sumup-table";
 import { requireAdmin } from "@/lib/auth/dal";
+import { isSumUpEnabled } from "@/lib/sumup/feature";
 import { loadSumUpOverview } from "@/lib/sumup";
 
 export const metadata: Metadata = { title: "SumUp-transacties" };
 
 export default async function SumUpPage() {
   await requireAdmin();
+  // Staat uit tot de SumUp-koppeling getest is (SUMUP_ENABLED=true).
+  if (!isSumUpEnabled()) notFound();
   const overview = await loadSumUpOverview();
 
   return (
