@@ -65,6 +65,23 @@ create policy "iedereen leest zichtbare activiteiten" on public.activiteit
 create policy "beheerders beheren activiteiten" on public.activiteit
   for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
 
+-- ─── Agenda met afspraken en vergaderingen (beheerders) ──────────────────────
+create table if not exists public.afspraak (
+  afspraak_id  bigint generated always as identity primary key,
+  titel        varchar(255) not null,
+  datum        date         not null,
+  starttijd    time         not null,
+  eindtijd     time,
+  locatie      varchar(255),
+  notities     text,
+  beheerder_id bigint references public.beheerder (beheerder_id) on delete set null,
+  check (eindtijd is null or eindtijd > starttijd)
+);
+
+alter table public.afspraak enable row level security;
+create policy "beheerders beheren afspraken" on public.afspraak
+  for all to authenticated using (public.is_beheerder()) with check (public.is_beheerder());
+
 -- ─── Sponsoren (US10) ────────────────────────────────────────────────────────
 create table if not exists public.sponsor (
   sponsor_id            bigint generated always as identity primary key,

@@ -1,6 +1,8 @@
 import type {
   Activity,
   ActivityInput,
+  Appointment,
+  AppointmentInput,
   Admin,
   FinancialTransaction,
   FinancialTransactionInput,
@@ -42,6 +44,11 @@ export interface ActivityRepository extends CrudRepository<Activity, ActivityInp
   listUpcoming(today: string): Promise<Activity[]>;
 }
 
+export interface AppointmentRepository extends CrudRepository<Appointment, AppointmentInput> {
+  /** Afspraken van vandaag of later, oplopend op datum en tijd. */
+  listUpcoming(today: string): Promise<Appointment[]>;
+}
+
 export type SponsorRepository = CrudRepository<Sponsor, SponsorInput>;
 
 export interface FinancialTransactionRepository
@@ -65,6 +72,7 @@ export interface Database {
   admins: AdminRepository;
   websiteContent: WebsiteContentRepository;
   activities: ActivityRepository;
+  appointments: AppointmentRepository;
   sponsors: SponsorRepository;
   transactions: FinancialTransactionRepository;
   sumupTransactions: SumUpTransactionRepository;

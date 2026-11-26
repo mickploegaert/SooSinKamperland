@@ -87,6 +87,28 @@ export type Activity = {
 
 export type ActivityInput = Omit<Activity, "id">;
 
+/** Tabel `afspraak` — afspraken en vergaderingen in de beheeragenda (US-agenda). */
+export type Appointment = {
+  /** afspraak_id */
+  id: number;
+  /** titel */
+  title: string;
+  /** datum, JJJJ-MM-DD */
+  date: string;
+  /** starttijd, UU:MM */
+  startTime: string;
+  /** eindtijd, UU:MM */
+  endTime: string | null;
+  /** locatie */
+  location: string | null;
+  /** notities */
+  notes: string | null;
+  /** beheerder_id (FK) */
+  updatedBy: number;
+};
+
+export type AppointmentInput = Omit<Appointment, "id">;
+
 /** Sponsorniveaus uit het schermontwerp van de sponsorenpagina. */
 export const SPONSOR_LEVELS = [
   { value: "goud", label: "Goud", amount: "€1.000+" },

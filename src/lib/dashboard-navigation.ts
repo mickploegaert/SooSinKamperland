@@ -7,6 +7,7 @@ export type DashboardNavItem = {
 export const dashboardNavigation: DashboardNavItem[] = [
   { href: "/dashboard", label: "Overzicht" },
   { href: "/dashboard/activiteiten", label: "Activiteiten" },
+  { href: "/dashboard/agenda", label: "Agenda" },
   { href: "/dashboard/inkomsten", label: "Inkomsten" },
   { href: "/dashboard/uitgaven", label: "Uitgaven" },
   { href: "/dashboard/website", label: "Website" },
